@@ -1,7 +1,7 @@
 # Sveltia CMS configuration — https://github.com/sveltia/sveltia-cms
 backend:
   name: github
-  repo: your-username/your-repo   # <- change this to your GitHub repo
+  repo: damex7/My-Portfolio   # <- change this to your GitHub repo
   branch: main
 
 media_folder: public/uploads    # where uploaded images are saved in the repo
