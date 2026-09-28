@@ -1,0 +1,17 @@
+{
+  "title": "Food Randomizer",
+  "day": null,
+  "category": "Other",
+  "status": "shipped",
+  "featured": false,
+  "summary": "A website that  helps you pick what you would like to eat at random.",
+  "cover": "/uploads/Fr img.jpg",
+  "tech": [
+    "HTML5",
+    "CSS",
+    "JAVASCRIPT"
+  ],
+  "liveUrl": "https://damex7.github.io/food_randomizer/",
+  "repoUrl": "https://github.com/damex7/food_randomizer",
+  "body": "I have had this project on my mind for a long time and it is one of those ones where you just sit and wonder what problems you face and one of the ones I face every now and then is deciding on what to eat. \n\nSo that is why I came up with this particular solution I will still improve along the line so stay tuned."
+}

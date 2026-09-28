@@ -1,25 +1,25 @@
 {
-  "name": "Your Name",
-  "wordmark": "YOURNAME",
-  "role": "Frontend & full-stack developer",
-  "headline": "A frontend and full-stack developer building one project a day for 30 days.",
-  "intro": "I build web apps with React, Next.js and TypeScript.",
-  "photo": "",
-  "email": "you@example.com",
-  "phone": "",
+  "name": "Abdrahman Abubakar",
+  "wordmark": "Abdrahman Abubakar",
+  "role": "Frontend & full-stack developer and engineer",
+  "headline": "A frontend & full-stack developer and engineer building one project a day for 30 days.",
+  "intro": "A full-stack developer building fast, reliable web applications, from the interface to the database.",
+  "photo": "/uploads/WhatsApp Image 2026-09-28 at 2.23.31 PM.jpeg",
+  "email": "abdrahmanabubakar7000@gmail.com",
+  "phone": "+234 903 538 4134",
   "location": "Nigeria",
   "available": true,
   "cvUrl": "",
   "challengeStart": "2026-09-28",
-  "about": "Write two or three sentences about who you are and how you got into development.\n\nThen a sentence or two about what you enjoy building, and what kind of work or team you're looking for.",
+  "about": "I'm a full-stack developer and engineer who builds web applications end to end. On the frontend, I work with HTML5, CSS, Javascript, React, Next.js, TypeScript and Tailwind CSS to create interfaces that are fast, accessible and easy to use. On the backend, I build APIs, design PostgreSQL databases, MYSQL and PHP, and set up authentication, so the whole product holds together.\n\nI learn by shipping. Right now I'm building one project a day for 30 days, moving from React fundamentals to full-stack apps with AI features.\n\nI'm looking for teams and projects where I can contribute from day one, take on unfamiliar problems and keep growing as an engineer.",
   "socials": [
     {
       "label": "GitHub",
-      "url": "https://github.com/your-username"
+      "url": "https://github.com/damex7"
     },
     {
       "label": "LinkedIn",
-      "url": "https://linkedin.com/in/your-username"
+      "url": "www.linkedin.com/in/abdrahman-abubakar-81b31a285"
     },
     {
       "label": "X",
@@ -29,11 +29,11 @@
   "expertise": [
     {
       "title": "Frontend development",
-      "description": "Responsive, accessible interfaces with React, Next.js, TypeScript and Tailwind CSS."
+      "description": "Responsive, accessible interfaces with HTML5, CSS3, Javascript, React, Next.js, TypeScript and Tailwind CSS."
     },
     {
       "title": "Full-stack applications",
-      "description": "Apps with authentication, PostgreSQL databases and APIs, from data model to deployment."
+      "description": "Apps with authentication, PostgreSQL databases and APIs, MYSQL PHP, from data model to deployment."
     },
     {
       "title": "AI-powered products",
@@ -47,7 +47,10 @@
         "React",
         "Next.js",
         "TypeScript",
-        "Tailwind CSS"
+        "Tailwind CSS",
+        "HTML5",
+        "CSS",
+        "Javascript"
       ]
     },
     {
@@ -56,7 +59,9 @@
         "Node.js",
         "PostgreSQL",
         "Prisma / Drizzle",
-        "REST APIs"
+        "REST APIs",
+        "PHP",
+        "MySql"
       ]
     },
     {

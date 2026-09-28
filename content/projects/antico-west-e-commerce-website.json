@@ -1,0 +1,19 @@
+{
+  "title": "Antico West E-commerce Website",
+  "day": null,
+  "category": "Other",
+  "status": "shipped",
+  "featured": true,
+  "summary": "An E-commerce website for a business that sells engineering tools, welding machines, lubricants, safety equipment etc.",
+  "cover": "/uploads/antico img.jpg",
+  "tech": [
+    "HTML",
+    "CSS",
+    "JAVASCRIPT",
+    "PHP",
+    "MYSQL"
+  ],
+  "liveUrl": "https://anticowest.com/",
+  "repoUrl": "",
+  "body": "## What it does\n\nAnticoWest is an e-commerce website where customers can purchase engineering equipment, agriculture equipment ,technical equipment, etc.\n\n## My contribution\n\nI built several pages by hand with HTML and CSS, without a framework, to get a solid understanding of layout before moving to React. The layouts use Flexbox, and a media query adapts them for phones. Vanilla JavaScript powers the mobile menu, which opens and closes on small screens, and the product gallery, where clicking a thumbnail swaps the main image. \n\n## What I learned\n\nStructuring a multi-page site taught me how much repeated code (the header, footer and product cards) plain HTML creates, and why component-based tools like React exist. It also showed me the gap between a storefront that looks complete and one that works: the cart and forms need JavaScript state or a backend behind them."
+}

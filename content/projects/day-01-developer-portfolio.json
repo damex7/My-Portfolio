@@ -3,7 +3,7 @@
   "day": 1,
   "category": "React + Tailwind",
   "status": "building",
-  "featured": true,
+  "featured": false,
   "summary": "React components + Tailwind",
   "cover": "",
   "tech": [

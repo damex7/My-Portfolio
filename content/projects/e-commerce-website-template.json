@@ -1,0 +1,17 @@
+{
+  "title": "E-Commerce Website Template",
+  "day": null,
+  "category": "Other",
+  "status": "shipped",
+  "featured": true,
+  "summary": "This is an E-commerce website template with certain functionalities using javascript.",
+  "cover": "/uploads/skylar img.jpg",
+  "tech": [
+    "HTML5",
+    "CSS",
+    "JAVASCRIPT"
+  ],
+  "liveUrl": "https://damex7.github.io/E-commerce-Website/",
+  "repoUrl": "https://github.com/damex7/E-commerce-Website",
+  "body": "## What it does\n\nSkylar is the storefront for a fashion brand. Shoppers can browse featured products and new arrivals, view promotions, open a product to see a gallery with size and quantity options, read the blog, and get in touch through a contact page with a map.\n\n## How I built it\n\nI built all six pages by hand with HTML and CSS, without a framework, to get a solid understanding of layout before moving to React. The layouts use Flexbox, and a media query adapts them for phones. Vanilla JavaScript powers the mobile menu, which opens and closes on small screens, and the product gallery, where clicking a thumbnail swaps the main image. Icons come from Font Awesome, and the site is deployed on GitHub Pages.\n\n## What I learned\n\nStructuring a multi-page site taught me how much repeated code (the header, footer and product cards) plain HTML creates, and why component-based tools like React exist. It also showed me the gap between a storefront that looks complete and one that works: the cart and forms need JavaScript state or a backend behind them. On Day 9 of my 30-day challenge I'm rebuilding it as a React store with a working cart."
+}

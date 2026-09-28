@@ -1,0 +1,17 @@
+{
+  "title": "Food Security, Nutrition and Livelihood Inclusion",
+  "day": null,
+  "category": "Other",
+  "status": "shipped",
+  "featured": true,
+  "summary": "A one-page website for a Nigerian food-security non-profit, presenting its mission, the causes of food insecurity, its crop-disease research and its work with women and youth.",
+  "cover": "/uploads/fsnli img.jpg",
+  "tech": [
+    "HTML5",
+    "CSS",
+    "JAVASCRIPT"
+  ],
+  "liveUrl": "https://fsnli.netlify.app/",
+  "repoUrl": "https://github.com/damex7/food-security-nutrition-and-livelihood-inclusion-website",
+  "body": "## What it does\n\nFSNLI works to improve food security in Nigeria through research, education and inclusive agriculture. The site explains why food security matters, breaks down the main causes (rising prices, climate change, insecurity, poor infrastructure and limited access to finance), highlights key statistics, and presents the organisation's crop-disease research and its programmes for women and young farmers. Visitors can download research as a PDF and find contact details in the footer.\n\n## How I built it\n\nI built it as a single scrolling page with semantic sections, so each nav link jumps to its part of the story. A small vanilla JavaScript script watches the scroll position and highlights the section you're currently reading in the navigation, and it also runs the menu on mobile. The layout is written in plain CSS with a breakpoint that restacks the cards and images for tablets and phones. Icons come from Font Awesome, and the site is hosted on GitHub Pages.\n\n## What I learned\n\nMost of the work was organising a lot of information so it reads in a clear order: the problem first, then the evidence, then what the organisation is doing about it. Building the active-section highlight taught me how to work with scroll events and element positions in JavaScript. Next time I would add a working contact form and keep content like statistics and projects in a data file, so the organisation could update them without editing HTML."
+}

@@ -1,0 +1,19 @@
+{
+  "title": "Megaliy International School Website",
+  "day": null,
+  "category": "Other",
+  "status": "shipped",
+  "featured": true,
+  "summary": "This website is for a school and I had the privilege of working on some pages alongside a fellow full-stack developer.",
+  "cover": "/uploads/megaliy img.jpg",
+  "tech": [
+    "HTML5",
+    "CSS",
+    "php",
+    "MYSQL",
+    "Javascript"
+  ],
+  "liveUrl": "https://megaliyacademy.com/",
+  "repoUrl": "",
+  "body": "## What it does\n\nMegaliy is a school website that I had the opportunity of working on certain pages alongside a full-stack developer. It is a fully functional school website with student management and teacher management, result generation and all .\n\n## How I Contributed\n\nI built all several pages by hand with HTML and CSS, without a framework, to get a solid understanding of layout before moving to React. The layouts use Flexbox, and a media query adapts them for phones. Vanilla JavaScript for the dynamic functionalities of the website."
+}
