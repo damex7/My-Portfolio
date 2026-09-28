@@ -2,17 +2,19 @@
   "title": "Developer Portfolio",
   "day": 1,
   "category": "React + Tailwind",
-  "status": "building",
-  "featured": false,
-  "summary": "React components + Tailwind",
-  "cover": "",
+  "status": "shipped",
+  "featured": true,
+  "summary": "My portfolio and 30-day challenge log, built with React and Tailwind, with a Git-based CMS so I can publish a new project from a form in minutes.",
+  "cover": "/uploads/portfolio img.jpg",
   "tech": [
     "React",
     "Tailwind CSS",
     "Vite",
-    "Sveltia CMS"
+    "Sveltia CMS",
+    "React Router",
+    "Vercel"
   ],
-  "liveUrl": "",
-  "repoUrl": "",
-  "body": "My portfolio and the log for my 30-day challenge. Every project is a JSON file edited through a CMS at /admin, so adding a finished project takes a minute.\n\n## What I learned\n\n- Write what you learned here."
+  "liveUrl": "https://abrahmanabubakar.vercel.app/",
+  "repoUrl": "https://github.com/damex7/My-Portfolio",
+  "body": "## What it does\n\nThis site is my portfolio and the live log of my 30-day challenge: 30 projects in 30 days, from React fundamentals to full-stack AI apps. The grid on the home page shows each day's progress, and every project has its own page with a write-up, the tech I used, and links to the live site and code.\n\n## How I built it\n\nThe site is a React single-page app built with Vite, styled with Tailwind CSS, and routed with React Router. I kept content and code separate: every project is a JSON file, and the site loads them all at build time with Vite's import.meta.glob, so adding a project never means touching a component. Stats like the shipped count and the category filters are calculated from that data, so they can't go out of date.\n\nTo make updating easy, I added Sveltia CMS at /admin. It gives me a form for each project and commits my changes straight to GitHub, which triggers Vercel to rebuild and deploy the site in about a minute. There's no server or database to maintain: GitHub stores the content and Vercel serves it.\n\n## What I learned\n\n- How a React app reaches the screen: from one empty HTML page, through main.jsx and the router, down to each page and its components.\n- useEffect must return nothing or a clean-up function. A one-line arrow function returned a value by accident and blanked the whole page with \"destroy is not a function\". Giving the effect a { } body fixed it.\n- Single-page apps need a rewrite rule on the host. Without vercel.json, refreshing a project page gave a 404, because only one real HTML file exists.\n- Git-based tools need a real Git repository. The CMS's local mode only worked after I ran git init, and signing in on the live site needed a fine-grained GitHub token with read and write access to Contents."
 }
