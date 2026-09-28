@@ -1,0 +1,92 @@
+# Sveltia CMS configuration — https://github.com/sveltia/sveltia-cms
+backend:
+  name: github
+  repo: your-username/your-repo   # <- change this to your GitHub repo
+  branch: main
+
+media_folder: public/uploads    # where uploaded images are saved in the repo
+public_folder: /uploads         # how the site refers to them
+
+collections:
+  - name: projects
+    label: Projects
+    label_singular: Project
+    folder: content/projects
+    format: json
+    extension: json
+    create: true
+    slug: "{{slug}}"
+    identifier_field: title
+    summary: "{{day}} · {{title}} · {{status}}"
+    sortable_fields: [day, title, status]
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Challenge day, name: day, widget: number, value_type: int, min: 1, max: 30, required: false, hint: "Leave empty for projects outside the 30-day challenge." }
+      - label: Category
+        name: category
+        widget: select
+        options: ["React + Tailwind", "React + APIs", "Next.js + TypeScript", "Full-stack", "AI", "Other"]
+      - label: Status
+        name: status
+        widget: select
+        default: planned
+        options:
+          - { label: Planned, value: planned }
+          - { label: Building, value: building }
+          - { label: Shipped, value: shipped }
+      - { label: Show on home page, name: featured, widget: boolean, default: false }
+      - { label: Summary, name: summary, widget: text, hint: "One or two sentences shown on the project card." }
+      - { label: Cover image, name: cover, widget: image, required: false }
+      - { label: Tech used, name: tech, widget: list, required: false }
+      - { label: Live URL, name: liveUrl, widget: string, required: false }
+      - { label: Code URL, name: repoUrl, widget: string, required: false }
+      - { label: Write-up, name: body, widget: markdown, required: false, hint: "What you built, how, and what you learned." }
+
+  - name: settings
+    label: Site settings
+    files:
+      - name: site
+        label: Profile & home page
+        file: content/settings/site.json
+        format: json
+        fields:
+          - { label: Name, name: name, widget: string }
+          - { label: Footer wordmark, name: wordmark, widget: string }
+          - { label: Role, name: role, widget: string }
+          - { label: Headline, name: headline, widget: text }
+          - { label: Short intro, name: intro, widget: text }
+          - { label: Photo, name: photo, widget: image, required: false }
+          - { label: Email, name: email, widget: string }
+          - { label: Phone, name: phone, widget: string, required: false }
+          - { label: Location, name: location, widget: string, required: false }
+          - { label: Open to work, name: available, widget: boolean }
+          - { label: CV link, name: cvUrl, widget: string, required: false }
+          - { label: Challenge start date, name: challengeStart, widget: datetime, date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
+          - { label: About, name: about, widget: markdown }
+          - label: Social links
+            name: socials
+            widget: list
+            fields:
+              - { label: Label, name: label, widget: string }
+              - { label: URL, name: url, widget: string }
+          - label: Expertise
+            name: expertise
+            widget: list
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Description, name: description, widget: text }
+          - label: Stack
+            name: stack
+            widget: list
+            fields:
+              - { label: Group, name: group, widget: string }
+              - { label: Items, name: items, widget: list }
+          - label: Testimonials
+            name: testimonials
+            widget: list
+            required: false
+            fields:
+              - { label: Name, name: name, widget: string }
+              - { label: Role, name: role, widget: string }
+              - { label: Photo, name: photo, widget: image, required: false }
+              - { label: Quote, name: quote, widget: text }

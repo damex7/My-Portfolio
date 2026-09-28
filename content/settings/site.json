@@ -1,0 +1,73 @@
+{
+  "name": "Your Name",
+  "wordmark": "YOURNAME",
+  "role": "Frontend & full-stack developer",
+  "headline": "A frontend and full-stack developer building one project a day for 30 days.",
+  "intro": "I build web apps with React, Next.js and TypeScript.",
+  "photo": "",
+  "email": "you@example.com",
+  "phone": "",
+  "location": "Nigeria",
+  "available": true,
+  "cvUrl": "",
+  "challengeStart": "2026-09-28",
+  "about": "Write two or three sentences about who you are and how you got into development.\n\nThen a sentence or two about what you enjoy building, and what kind of work or team you're looking for.",
+  "socials": [
+    {
+      "label": "GitHub",
+      "url": "https://github.com/your-username"
+    },
+    {
+      "label": "LinkedIn",
+      "url": "https://linkedin.com/in/your-username"
+    },
+    {
+      "label": "X",
+      "url": "https://x.com/your-username"
+    }
+  ],
+  "expertise": [
+    {
+      "title": "Frontend development",
+      "description": "Responsive, accessible interfaces with React, Next.js, TypeScript and Tailwind CSS."
+    },
+    {
+      "title": "Full-stack applications",
+      "description": "Apps with authentication, PostgreSQL databases and APIs, from data model to deployment."
+    },
+    {
+      "title": "AI-powered products",
+      "description": "Features built on AI APIs: document analysis, chat assistants and code tools."
+    }
+  ],
+  "stack": [
+    {
+      "group": "Frontend",
+      "items": [
+        "React",
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS"
+      ]
+    },
+    {
+      "group": "Backend",
+      "items": [
+        "Node.js",
+        "PostgreSQL",
+        "Prisma / Drizzle",
+        "REST APIs"
+      ]
+    },
+    {
+      "group": "Tooling",
+      "items": [
+        "Git",
+        "Vite",
+        "Vercel",
+        "AI APIs"
+      ]
+    }
+  ],
+  "testimonials": []
+}

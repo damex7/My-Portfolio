@@ -1,0 +1,18 @@
+{
+  "title": "Developer Portfolio",
+  "day": 1,
+  "category": "React + Tailwind",
+  "status": "building",
+  "featured": true,
+  "summary": "React components + Tailwind",
+  "cover": "",
+  "tech": [
+    "React",
+    "Tailwind CSS",
+    "Vite",
+    "Sveltia CMS"
+  ],
+  "liveUrl": "",
+  "repoUrl": "",
+  "body": "My portfolio and the log for my 30-day challenge. Every project is a JSON file edited through a CMS at /admin, so adding a finished project takes a minute.\n\n## What I learned\n\n- Write what you learned here."
+}
