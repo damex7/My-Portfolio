@@ -2,12 +2,15 @@
   "title": "Expense Tracker",
   "day": 2,
   "category": "React + Tailwind",
-  "status": "building",
-  "featured": false,
-  "summary": "State, forms and local storage",
+  "status": "shipped",
+  "featured": true,
+  "summary": "An expense tracker with monthly budgets, category breakdowns, light and dark mode, and backups, with all data kept privately in the browser.",
   "cover": "",
-  "tech": [],
-  "liveUrl": "",
-  "repoUrl": "",
-  "body": ""
+  "tech": [
+    "React",
+    "Tailwind Css"
+  ],
+  "liveUrl": "https://30days-02-expense-tracker.vercel.app/",
+  "repoUrl": "https://github.com/damex7/30days-02-expense-tracker",
+  "body": "What it does\n\nA monthly expense tracker in Naira. You log what you spend by category and date, set a monthly budget, and see at a glance how much is left. A budget strip fills up by category and turns red when you go over. You can browse past months, filter by category, edit or delete expenses (with undo), and switch between light and dark mode. The design is inspired by adire, the indigo-dyed cloth of south-west Nigeria.\n\n**How I built it**\n\nAll the ways the list can change (add, edit, delete, restore, import) go through one reducer function, so the logic lives in one place. A custom hook, useLocalStorage, works like useState but saves to the browser, so there's no account or server: each visitor's data stays on their own device. Totals and category breakdowns are calculated from the expenses on each render rather than stored, so they can never go out of sync.\n\nColours come from named design tokens, so dark mode is just a second set of values for the same names, and a small script sets the theme before the page draws to avoid a white flash. Backups download as a JSON file, and importing one checks every field before accepting it, because a user's file can't be trusted. The About panel uses the browser's built-in dialog element for keyboard and screen-reader support.\n\n**What I learned**\n\n- Controlled forms and validation: keeping every input in React state, and showing errors next to the field that needs fixing.\n- Reducers: describing what happened (\"deleted\") rather than how to change the list makes the code much easier to follow.\n- Effect clean-up: the undo bar's timer is cancelled in its clean-up function, the right way to use the useEffect I got wrong on Day 1.\n- Local storage has trade-offs: it's private and needs no backend, but data stays on one device, which is why I added backups."
 }
