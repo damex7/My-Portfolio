@@ -5,7 +5,7 @@
   "status": "shipped",
   "featured": true,
   "summary": "An expense tracker with monthly budgets, category breakdowns, light and dark mode, and backups, with all data kept privately in the browser.",
-  "cover": "",
+  "cover": "/uploads/expense img.jpg",
   "tech": [
     "React",
     "Tailwind Css"
