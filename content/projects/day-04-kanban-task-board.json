@@ -2,12 +2,17 @@
   "title": "Kanban Task Board",
   "day": 4,
   "category": "React + Tailwind",
-  "status": "building",
-  "featured": false,
-  "summary": "State and drag-and-drop",
-  "cover": "",
-  "tech": [],
-  "liveUrl": "",
-  "repoUrl": "",
-  "body": ""
+  "status": "shipped",
+  "featured": true,
+  "summary": "A drag-and-drop task board styled like a blueprint, with mouse, touch and full keyboard support, search, undo, and saving in the browser.",
+  "cover": "/uploads/kanban board.jpg",
+  "tech": [
+    "REACT",
+    "TAILWIND CSS",
+    "VITE",
+    "VERCEL"
+  ],
+  "liveUrl": "https://kanban-board4.vercel.app/",
+  "repoUrl": "https://github.com/damex7/30days-04-kanban-board",
+  "body": "**What it does**\n\nBlueprint Kanban is a task board for moving work through stages. Tasks are cards with a title, description, priority, due date and labels, and you drag them between columns like To do, In progress and Done. You can add, rename, reorder and delete columns, search and filter tasks, undo a delete, and export the board as a file to back it up. Overdue tasks are stamped so they stand out, and the board saves in your browser, so it's still there when you come back. The design borrows from technical drawings: grid paper, monospace labels and dimension-line priority tags.\n\n**How I built it**\n\nThe whole board lives in one reducer with 13 named actions, shared with every component through React context. I stored the data normalised: each task exists once, by id, and columns only hold ordered lists of ids. That made moving a task as simple as moving one id between two arrays.\n\nDrag-and-drop uses dnd-kit, because the browser's built-in version doesn't work on touch screens or with a keyboard. A custom hook translates every drag into the same reducer actions a button would send, so there's one source of truth, and a custom collision check makes empty columns valid drop targets. Screen readers hear where each task is picked up, moved and dropped, by name and position.\n\nSaved and imported data is never trusted: a validator checks every field and repairs small problems instead of throwing the board away.\n\n**What I learned**\n\n- Normalised data makes complex updates simple. Storing tasks by id instead of nesting them inside columns turned moves, edits and filters into small, predictable changes, the same way database tables link by id.\n- Reducers must be pure. Random ids and timestamps are created in action creators, outside the reducer, so the same action always gives the same result.\n- Splitting context prevents wasted re-renders. The board and dispatch live in separate contexts, so components that only send actions don't re-render on every change.\n- Accessible drag-and-drop takes deliberate work. Keyboard moves, a non-drag alternative, focus management and spoken announcements all had to be designed, not added at the end."
 }
