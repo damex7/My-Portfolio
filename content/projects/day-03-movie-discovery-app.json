@@ -1,13 +1,20 @@
 {
-  "title": "Movie Discovery App",
+  "title": "Marquee: Movie Discovery App",
   "day": 3,
   "category": "React + Tailwind",
-  "status": "building",
-  "featured": false,
-  "summary": "API integration",
-  "cover": "",
-  "tech": [],
-  "liveUrl": "",
-  "repoUrl": "",
-  "body": ""
+  "status": "shipped",
+  "featured": true,
+  "summary": "A movie discovery app powered by the TMDB API, with debounced search, genre filters, detail pages and a watchlist, styled like a film-festival programme.",
+  "cover": "/uploads/movie disc app.jpg",
+  "tech": [
+    "REACT",
+    "REACT ROUTER",
+    "TAILWIND CSS",
+    "TMDB API",
+    "FETCH API",
+    "VITE"
+  ],
+  "liveUrl": "https://marquee-movie-discovery-app.vercel.app/",
+  "repoUrl": "https://github.com/damex7/30days-03-Movie-Discovery-App",
+  "body": "**What it does**\n\nMarquee helps you find something to watch. It shows this week's trending movies and a grid of popular ones you can filter by genre, with search that updates as you type. Each movie has its own page with the synopsis, runtime, rating, top cast and a link to the trailer, and you can save movies to a watchlist that stays in your browser.\n\n**How I built it**\n\nAll movie data comes from the TMDB API. Every request goes through one module, so the URLs, the access token and error handling live in a single place. A reusable useFetch hook manages loading, success and error states, and uses AbortController to cancel outdated requests, so a slow response can never overwrite a newer one when you type quickly.\n\nSearch waits until you pause typing (debouncing) before calling the API, and both the search term and the genre filter live in the URL, so any view can be shared or refreshed. Every screen that loads data has a skeleton loading state, an error message with a Retry button, and an empty state. The design is styled like a printed film-festival programme, with a warm dark mode that follows your device setting.\n\n**What I learned**\n\n- fetch only fails on network errors. A 404 or 401 still \"succeeds\", so I have to check response.ok myself.\n- Race conditions are real: without cancelling old requests, fast typing can show results for an earlier search.\n- The URL is state too. Keeping the search and filters in it makes the app shareable for free.\n- Anything prefixed VITE_ is public. That's fine for a read-only key, but secret keys belong on a server, which is what I'll build later in the challenge."
 }
