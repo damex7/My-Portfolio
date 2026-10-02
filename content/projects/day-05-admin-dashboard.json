@@ -2,12 +2,18 @@
   "title": "Admin Dashboard",
   "day": 5,
   "category": "React + Tailwind",
-  "status": "building",
-  "featured": false,
-  "summary": "Reusable components and data visualisation",
-  "cover": "",
-  "tech": [],
-  "liveUrl": "",
-  "repoUrl": "",
-  "body": ""
+  "status": "shipped",
+  "featured": true,
+  "summary": "An admin dashboard for a fictional Nigerian online store, with sales charts, KPI cards and searchable tables, all built from my own reusable component library.",
+  "cover": "/uploads/admin db.jpg",
+  "tech": [
+    "REACT",
+    "TAILWIND CSS",
+    "RECHARTS",
+    "REACT ROUTER",
+    "VERCEL"
+  ],
+  "liveUrl": "https://admin-dashboard-77.vercel.app/",
+  "repoUrl": "https://github.com/damex7/30days-05-admin-dashboard",
+  "body": "**What it does**\n\nKasuwa (Hausa for \"market\") is the admin dashboard for a fictional Nigerian online store. The Overview shows revenue, orders, average order value and new customers, each compared with the previous period, alongside charts of revenue over time, sales by category and payment methods: card, bank transfer and cash on delivery. A date range control switches everything between 7 days, 30 days, 90 days and 12 months.\n\nThe Orders, Customers and Products pages are searchable, sortable tables with filters, pagination and a details drawer for each row. Orders can be exported as CSV, and products show low-stock and out-of-stock badges. Every view, filter and open drawer is kept in the URL, so a link opens the exact same view.\n\n**How I built it**\n\nThe focus of the day was reusable components. I built a small component library (buttons, cards, badges, drawers, tabs, skeletons and more) where variants and sizes are props rather than copies. The centrepiece is one generic DataTable driven by a columns config: Orders, Customers and Products are the same component with three different configs. A UI kit page shows every component in all its variants, like a mini Storybook.\n\nThere's no backend, so I generated a year of realistic sample data with a seeded random generator, which keeps the numbers identical on every load. A mock API adds a short delay to every request, so the loading skeletons, error states and Retry buttons behave as they would against a real server. Adding ?fail=1 to the URL makes requests fail on purpose for testing.\n\nCharts use Recharts, wrapped in an accessible figure with a title, a text summary and a table view. The KPI sparklines are drawn by hand in SVG, and pages are lazy-loaded so the chart library only downloads when the Overview needs it.\n\n**What I learned**\n\n- A good config beats copied code. Describing a table as data (columns, accessors, cell renderers) let one component replace three, and fixing a bug in it fixes every table at once.\n- The URL is excellent state. Keeping filters, sorting and pages in the address makes views shareable and refresh-proof for free.\n- Charts need text too. A chart that's only colours and shapes shuts out screen-reader users, so every chart also has a summary and a table view.\n- Design a fake API like a real one. Delays and simulated failures made me build proper loading and error states now, so the app will be ready for a real backend."
 }
