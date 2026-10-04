@@ -4,10 +4,18 @@
   "category": "React + APIs",
   "status": "building",
   "featured": false,
-  "summary": "REST APIs",
-  "cover": "",
-  "tech": [],
-  "liveUrl": "",
-  "repoUrl": "",
-  "body": ""
+  "summary": "A GitHub profile explorer that scores how ready a profile is for recruiters and gives specific tips to improve it, plus repo browsing, language charts and side-by-side comparisons.",
+  "cover": "/uploads/git profile checker sc.jpg",
+  "tech": [
+    "REACT",
+    "TAILWIND CSS",
+    "VITE",
+    "GITHUB REST API",
+    "RECHARTS",
+    "REACT ROUTER",
+    "DOM PURIFY"
+  ],
+  "liveUrl": "https://github-explorer-uno.vercel.app/",
+  "repoUrl": "https://github.com/damex7/30days-06-github-explorer",
+  "body": "**What it does**\n\nScout is a GitHub profile viewer that also helps developers improve their profiles. Search any username to see their details, total stars, a language breakdown, and a repository list you can sort, filter and expand with \"Load more\". Any repo's README can be previewed without leaving the app.\n\nThe recruiter view scores a profile from 0 to 100 using eight explained checks: a bio, photo and location, a profile README, repo descriptions, live demo links, licences and recent activity. Every failed check comes with a specific tip, like \"4 of your 6 top repos have no description\". You can also find developers by location (Lagos, Abuja, Port Harcourt or any city), optionally by language, and compare two profiles side by side. Every view lives in the URL, so it can be shared or bookmarked.\n\n **How I built it**\n\nEvery request goes through one function that sets GitHub's headers, reads the rate-limit headers from every response, and turns each status code into a clear message: a missing user, an invalid search, an expired token or GitHub being down. Pagination follows the Link header that GitHub sends rather than guessing page numbers.\n\nWithout a token, GitHub allows only 60 requests an hour, so saving requests shaped the whole design. Responses are cached for five minutes, then revalidated with ETags, so unchanged data comes back as a 304 that doesn't count against the limit. Repos load 100 at a time, the language chart reuses data already loaded, and when the limit runs out, the app shows a live countdown to the reset instead of sending requests it knows will fail. Visitors can raise the limit by adding their own token, which is stored only in their browser.\n\nREADME previews use GitHub's rendered HTML, cleaned with DOMPurify before display, because inserting outside HTML into a page unchecked is a security risk.\n\n**What I learned**\n\n- Status codes are part of the design. A 404, a 403 rate limit, a 422 and a network error each need a different message and a different next step.\n- Headers carry the important details. Rate limits, pagination and caching all live in response headers, not in the data.\n- Rate limits change how you build. Caching, ETags and reusing data turned a 60-request budget into a usable app.\n- Never trust outside HTML. Anything from another source must be sanitised before it goes into the page."
 }
