@@ -1,13 +1,18 @@
 {
-  "title": "Job Search Platform",
+  "title": "Recipe Finder",
   "day": 7,
   "category": "React + APIs",
-  "status": "planned",
-  "featured": false,
-  "summary": "Search, filters and pagination",
-  "cover": "",
-  "tech": [],
-  "liveUrl": "",
-  "repoUrl": "",
-  "body": ""
+  "status": "shipped",
+  "featured": true,
+  "summary": "A recipe finder that starts from what's in your kitchen, ranking recipes by the ingredients you already have, with 16 Nigerian house recipes, a cook mode and a shopping list.",
+  "cover": "/uploads/recipe 1.jpg",
+  "tech": [
+    "REACT",
+    "VITE",
+    "TAILWIND CSS",
+    "THEMEALDB API"
+  ],
+  "liveUrl": "https://recipe-finderrrr.vercel.app/",
+  "repoUrl": "https://github.com/damex7/30days-07-recipe-finder",
+  "body": "**What it does**\n\nPepper Pot answers a question most recipe apps ignore: \"What can I cook with what I already have?\" Add your ingredients, like rice, tomatoes and chicken, and it ranks recipes by how many of them each one uses, then shows what you'd still need to buy. Every recipe marks its ingredients as Have, Need or Staple against your pantry.\n\nTheMealDB lists \"Nigerian\" as a cuisine but has no Nigerian meals, so Pepper Pot includes 16 house recipes of its own, from party jollof and egusi soup to ofada stew, suya, moi moi and puff-puff. The ingredient suggestions know Nigerian staples like palm oil, crayfish, iru and ugu too.\n\nCook mode shows one step at a time in large text and keeps your phone's screen on while you cook. There are also favourites, a shopping list that merges duplicates and can be shared as text, a \"Surprise me\" button, and links that keep your ingredients and filters, so you can send someone exactly what you're looking at.\n\n**How I built it**\n\nThe day's focus was combining and cleaning API data. When you add ingredients, Pepper Pot asks TheMealDB for the meals that use each one, all at the same time, then merges and ranks the results. It uses Promise.allSettled, so if one request fails, the others still count and the page says which ingredient couldn't be checked, with a Retry button.\n\nBrowsing uses the opposite rule on purpose. TheMealDB filters by one thing at a time, so \"Seafood + Spanish\" fetches both lists and keeps only the meals in both. There, a missing list would give wrong results, so it uses Promise.all, which fails completely instead.\n\nTheMealDB's data is messy: ingredients are spread over 20 numbered fields, many of them empty, and the instructions are one long string. One adapter file turns every meal into a clean shape, and the house recipes are written in that shape directly, so both sources work together everywhere. The screen stays on in cook mode thanks to the Screen Wake Lock API.\n\n**What I learned**\n\n- Clean outside data in one place. An adapter means components never see the API's quirks, and adding a second source (the house recipes) needed no special cases.\n- Choose how parallel requests fail. Promise.allSettled keeps partial results when some are useful on their own; Promise.all is right when a missing piece would make the answer wrong.\n- APIs have gaps, and you can fill them. When the data I needed didn't exist, I added my own in the same shape.\n- Design for the real setting. A recipe app is used with messy hands and a phone propped up, which is why cook mode has big text, big buttons and a screen that stays on."
 }
