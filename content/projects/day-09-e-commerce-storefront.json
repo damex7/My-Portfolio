@@ -1,13 +1,21 @@
 {
-  "title": "E-commerce Storefront",
+  "title": "E-commerce Storefront - Ibi ọjà",
   "day": 9,
   "category": "React + APIs",
-  "status": "planned",
+  "status": "shipped",
   "featured": false,
-  "summary": "Cart and state management",
-  "cover": "",
-  "tech": [],
-  "liveUrl": "",
-  "repoUrl": "",
-  "body": ""
+  "summary": "An online storefront built for how Nigerian small businesses sell: prices in Naira, delivery fees by state, pay online, by transfer or on delivery, and orders sent to the seller on WhatsApp.",
+  "cover": "/uploads/ibi oja.jpg",
+  "tech": [
+    "React",
+    "Tailwind CSS",
+    "Vite",
+    "DummyJSON API",
+    "Paystack (test mode)",
+    "React Router",
+    "Vercel"
+  ],
+  "liveUrl": "https://ecommerce-storefront-ibi-oja.vercel.app/",
+  "repoUrl": "https://github.com/damex7/30days-09-ecommerce-storefront",
+  "body": "**What it does**\n\nIbi ọjà (Yoruba for \"marketplace\") is a storefront designed around how Nigerian small businesses actually sell. Shoppers can browse and search products, filter by category, price and rating, view image galleries and reviews, and save items to a wishlist. The cart opens as a slide-over drawer, supports promo codes like NAIJA10, and lets you undo a removal.\n\nCheckout has three steps: contact and delivery, payment, and review. Phone numbers are checked as Nigerian (0803… or +234…), the delivery fee depends on the state, and buyers can pay online, by bank transfer, or on delivery in selected states. After ordering, one tap sends the whole order to the seller on WhatsApp, neatly formatted, which is how many Nigerian shops take orders today. Past orders appear on a My orders page.\n\n**How I built it**\n\nThe cart, wishlist and recently viewed items live in one reducer shared through context and saved in the browser, with saved data checked before it's trusted. Subtotals, discounts, delivery and totals are always calculated, never stored, so they can't drift out of sync.\n\nAll money is stored as whole kobo, never decimals, because computers can't represent most decimal amounts exactly; adding ₦0.10 and ₦0.20 the usual way doesn't give exactly ₦0.30. Product prices from DummyJSON are converted to Naira once, at the edge of the app.\n\nEach checkout step validates before moving on, keeps your answers if you go back, and moves focus to the first error so keyboard and screen-reader users aren't lost. Online payment uses Paystack in test mode. Because a browser can fake a \"payment successful\" message, those orders are honestly marked \"unverified (demo)\": real verification needs a server with the secret key, which comes later in the challenge.\n\n**What I learned**\n\n- Never use decimals for money. Storing whole kobo removes a whole class of rounding bugs.\n- Derive totals, don't store them. Calculating from the cart every time means the numbers can't disagree.\n- Good forms guide people. Step-by-step validation, saved progress and focus on the first error make checkout feel easy, especially on a phone.\n- Payments need a server. A public key can open a payment popup, but only a server holding the secret key can confirm the money arrived.\n- Design for how people really buy. Pay on delivery and WhatsApp orders matter more to Nigerian shoppers than another payment button."
 }
