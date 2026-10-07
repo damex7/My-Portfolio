@@ -2,12 +2,22 @@
   "title": "Travel Planner",
   "day": 8,
   "category": "React + APIs",
-  "status": "planned",
-  "featured": false,
-  "summary": "Combining multiple APIs",
-  "cover": "",
-  "tech": [],
-  "liveUrl": "",
-  "repoUrl": "",
-  "body": ""
+  "status": "shipped",
+  "featured": true,
+  "summary": "A trip planner built for Nigerian travellers: weather, costs in Naira, time difference from Lagos, country facts and a forecast-based packing list on one page, plus a day-by-day trip planner.",
+  "cover": "/uploads/travel planner 2.jpg",
+  "tech": [
+    "React",
+    "Tailwind CSS",
+    "Vite",
+    "Leaflet,",
+    "OpenStreetMap",
+    "Open-Meteo",
+    "Wikipedia API",
+    "React Router",
+    "Vercel"
+  ],
+  "liveUrl": "https://passport-travel-planner.vercel.app/",
+  "repoUrl": "https://github.com/damex7/30days-08-travel-planner",
+  "body": "**What it does**\n\nPassport is a trip planner from a Nigerian traveller's point of view. Search any city, or pick a popular trip from Lagos like Accra, Nairobi or Dubai, and one page brings together everything you need to decide: a Wikipedia summary and photo, the 7-day forecast, typical weather for each month, the local time and difference from Lagos, the exchange rate in both directions with a Naira converter, languages, calling code, driving side, and a map**.**\n\nIt also builds a packing list from the real forecast: rain means an umbrella, cold means a jacket, a high UV index means sunscreen. Then you can plan the trip day by day, adding activities with times, notes and estimated costs, with the total shown in the local currency and in Naira. Trips are saved in the browser, can be exported, and can be copied as text to share on WhatsApp.\n\n**How I built it**\n\nThe day's focus was combining several APIs, all free and keyless. Finding the city has to happen first, because everything else needs its coordinates and country. After that, the weather, country, exchange-rate and Wikipedia requests all run at the same time. Each section loads, fails and retries on its own, so if one API is down, the rest of the page still works.\n\nEvery API has its own module with a normaliser, behind one shared request helper that handles errors, timeouts and caching. Cache lifetimes match how fast the data changes: weather for 15 minutes, exchange rates for an hour, country data for a day.\n\nThe plan used REST Countries, but its free version was shut down in 2026, so Passport reads the same open dataset it was built on instead. The map uses Leaflet and OpenStreetMap rather than Google Maps, which needs a billing account, and every data source is credited where its data appears.\n\n**What I learned**\n\n- Know which requests depend on each other. Waiting for the city first, then fetching everything else in parallel, makes the page as fast as it can be.\n- Let each section fail on its own. One broken API should cost one section, not the whole page.\n- Cache by how fast data changes. Weather goes stale in minutes; a country's languages don't.\n- APIs disappear. When a service I'd planned on shut down, building on open data with each source behind its own module made swapping it a one-file change."
 }
