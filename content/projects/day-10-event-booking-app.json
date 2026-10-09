@@ -1,13 +1,18 @@
 {
-  "title": "Event Booking App",
+  "title": "Ipe Event Booking App",
   "day": 10,
   "category": "React + APIs",
-  "status": "building",
+  "status": "shipped",
   "featured": false,
-  "summary": "Forms and validation",
-  "cover": "",
-  "tech": [],
-  "liveUrl": "",
-  "repoUrl": "",
-  "body": ""
+  "summary": "An event booking app where each organiser designs their own booking form, built without any form library.",
+  "cover": "/uploads/event planner.jpg",
+  "tech": [
+    "React Router",
+    "Tailwind CSS",
+    "Vite",
+    "React"
+  ],
+  "liveUrl": "https://ipe-event-booking.vercel.app/",
+  "repoUrl": "https://github.com/damex7/30days-10-event-booking",
+  "body": "Nigerian events run on WhatsApp threads and spreadsheets, especially owambes, where the host is also collecting aso-ebi colours and sizes from a long list of guests. Ìpè (Yoruba for “a call” or “an invitation”) lets an organiser create an event with ticket types and their own questions. Guests then book through a form that is generated from those questions.\n\n**What it does**\n\n- Browse events by city, category and date, with every filter kept in the URL.\n- Book tickets with one set of details per guest, promo codes, sold-out tickets and a waitlist.\n- A confirmation page with an .ics calendar file, WhatsApp sharing and printable tickets.\n- Organisers get a 4-step event editor with a form builder and a live “guest’s view” preview.\n- A dashboard with sales, a bookings table, a summary of answers (aso-ebi orders by colour × size) and CSV export.\n\n**What I learned**\n\n- **Validation as pure functions.** Each rule takes a value and returns a message or nothing. Field names are paths (`attendees.1.email`), so one flat error object can describe deeply nested data.\n- **“Reward early, punish late.”** The form always knows every error, but only shows one after you leave a field. Once an error is showing, it clears the moment you fix it. Submitting reveals everything, shows an error summary and focuses the first problem.\n- **Forms from config.** Each question is plain data. A `switch` on its type picks the control, and `showIf` conditions show or hide follow-up questions. Hidden answers are ignored by validation and dropped before saving.\n- **Accessibility built in once.** Labels, hints and errors are linked with `aria-describedby`. Errors don’t rely on colour, and they sit above the input because a phone keyboard covers whatever is below.\n- **Never trust the browser.** The pretend server re-checks availability, prices and promo codes itself. Drafts survive a refresh, and you’re asked before leaving a half-finished booking."
 }
