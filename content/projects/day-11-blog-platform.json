@@ -1,13 +1,17 @@
 {
-  "title": "Blog Platform",
+  "title": "Inkwell Blog Platform",
   "day": 11,
   "category": "Next.js + TypeScript",
-  "status": "planned",
+  "status": "shipped",
   "featured": false,
-  "summary": "Next.js routing",
-  "cover": "",
-  "tech": [],
-  "liveUrl": "",
-  "repoUrl": "",
-  "body": ""
+  "summary": "A statically generated blog built to learn the Next.js App Router: dynamic routes, route groups, metadata, RSS and sitemaps.",
+  "cover": "/uploads/blog-platform sc.jpg",
+  "tech": [
+    "Next.js 16",
+    "TypeScript",
+    "Tailwind CSS"
+  ],
+  "liveUrl": "https://inkwell-blog-platform.vercel.app/",
+  "repoUrl": "https://github.com/damex7/30days-11-blog-platform",
+  "body": "Inkwell is a developer journal with honest notes on building web apps from Nigeria, written for slow data and small phones. It’s my first Next.js project, so every route was chosen to practise a specific routing feature.\n\n**What it does**\n\n- Posts are Markdown files with typed frontmatter, so there’s no database.\n- The whole blog is pre-rendered at build time, including paginated listing pages and tag, category and author pages.\n- Post pages have a table of contents, a reading progress bar, links to previous and next posts, and related posts based on shared tags.\n- Search runs on the server, and the query stays in the URL.\n- Each post gets its own social share image, plus an RSS feed, a sitemap and robots.txt.\n- It has light and dark mode with no flash on load, and works down to 360px.\n\n**What I learned**\n\n- How the file system defines routes in the App Router, including dynamic segments and route groups.\n- How `generateStaticParams` and `dynamicParams` decide which pages exist and which return a 404.\n- When a component needs to be a Client Component, and why most of them don’t."
 }
