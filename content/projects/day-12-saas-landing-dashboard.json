@@ -1,13 +1,19 @@
 {
-  "title": "SaaS Landing + Dashboard",
+  "title": "Owó: Invoicing for Nigerian Small Businesses",
   "day": 12,
   "category": "Next.js + TypeScript",
-  "status": "building",
+  "status": "shipped",
   "featured": false,
-  "summary": "Layouts and reusable components",
-  "cover": "",
-  "tech": [],
-  "liveUrl": "",
-  "repoUrl": "",
-  "body": ""
+  "summary": "A SaaS product with a marketing site, auth screens and an invoicing dashboard, built to learn Next.js layouts and a reusable component library.",
+  "cover": "/uploads/owo app saas.jpg",
+  "tech": [
+    "Next.js 16",
+    "TypeScript",
+    "Tailwind CSS",
+    "class-variance-authority",
+    "Lucide icons"
+  ],
+  "liveUrl": "https://saas-dashboard-owo.vercel.app/",
+  "repoUrl": "https://github.com/damex7/30days-12-saas-dashboard",
+  "body": "Owó (Yoruba for “money”) is invoicing software for Nigerian freelancers and small businesses: send an invoice, get paid, and see who still owes you. It’s a full SaaS product in one codebase, with the website that sells it, the sign-in screens and the app itself. Each part has its own layout, and all of them are built from the same set of components.\n\n**What it does**\n\n- A marketing site with features, pricing in Naira (monthly or yearly), testimonials, an FAQ, a changelog and a contact page.\n- A dashboard with revenue, outstanding and overdue totals, a 12-month revenue chart drawn in plain SVG, recent activity, and the overdue invoices to chase.\n- Invoices you can filter, search and page through, with the filters kept in the URL. Tapping one opens a quick view over the list, and a direct link or refresh opens the full printable invoice with a WhatsApp share link.\n- A new-invoice form with line items, 7.5% VAT and a live total.\n- Settings with profile, business, billing and team tabs; a collapsible sidebar that remembers its state; and a drawer on phones.\n- A component library page that shows every button, form control, table, dialog and badge in all its states.\n- Light and dark mode with no flash on load, and it works down to 360px. All data is sample data, and the sign-in is a demo, not real auth.\n\n**What I learned**\n\n- **Route groups give each part of the product its own layout** without changing the URL. The marketing site, auth screens and app share one root layout and nothing else.\n- **Layouts stay mounted; templates don’t.** The sidebar and the settings tab bar keep their state as you move between pages, while the auth pages’ fade-in replays on every visit.\n- **Parallel routes let each dashboard panel load and fail on its own,** so one slow chart never holds up the rest.\n- **Intercepting routes** turn the same invoice URL into a modal from the list and into a full page on refresh.\n- **Composition over boolean props.** Components take children and slots (like a page header’s action buttons) instead of a growing list of on/off settings, and their variants are defined once with class-variance-authority.\n- **Keeping data behind one module** (`lib/data.ts`) means the pages won’t change when a real database arrives on Day 16."
 }
