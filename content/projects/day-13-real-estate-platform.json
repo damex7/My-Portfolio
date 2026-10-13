@@ -2,12 +2,16 @@
   "title": "Real Estate Platform",
   "day": 13,
   "category": "Next.js + TypeScript",
-  "status": "building",
+  "status": "shipped",
   "featured": false,
-  "summary": "Dynamic routes",
-  "cover": "",
-  "tech": [],
-  "liveUrl": "",
+  "summary": "A property site for Nigerian homes and land to buy or rent, where every city, area, agent and listing has its own shareable link, plus listings from five other countries.",
+  "cover": "/uploads/estate.jpg",
+  "tech": [
+    "Next.js",
+    "TypeScript",
+    "Tailwind CSS"
+  ],
+  "liveUrl": "https://hearthstone-real-estate-platform.vercel.app/",
   "repoUrl": "",
-  "body": ""
+  "body": " **What it does**\n\nHearthstone Realty is a property site for finding houses, flats and land to buy or rent in Lagos, Abuja, Port Harcourt and Ibadan. Searches follow the way people actually look for a home: pick Rent, then Lagos, then Yaba, and the address becomes /rent/lagos/yaba, a link you can send to anyone. Each listing shows what Nigerian buyers and tenants ask about first: the BQ, the number of toilets, parking and the title document (C of O or Governor's Consent). Sale listings have a mortgage estimate, and every agent can be reached on WhatsApp with a message that already includes the property's reference and link. Area guides compare neighbourhoods using average prices calculated from the listings, and an International section covers the UK, UAE, Ghana, Kenya and South Africa, plus live US listings from the SimplyRETS demo feed.\n\n **How I built it**\n\nThe learning focus was dynamic routes in the Next.js App Router. The URL carries the location (/rent/lagos/yaba) while the other filters, like bedrooms, price and sort, live in the query string, so a filtered search survives a refresh and can be shared. Every valid buy/rent, state and area combination is generated at build time from the data, and anything else returns a 404 instead of an empty page. Property URLs are readable slugs that end in the listing's id, so the page always looks a property up by the id. Area guides use one route for all three levels (all states, one state, one area), agents get their own pages, and breadcrumbs are built from the route itself.\n\nAll listing data goes through one data module, so the pages don't know where it comes from. That will make the switch to PostgreSQL on Day 16 a change in one place. Prices are stored as whole numbers in kobo and formatted as naira in one function.\n\n **What I learned**\n\n- params are for where, searchParams are for how. Location belongs in the path because it describes the page. Filters belong in the query string because they only narrow it down.\n- generateStaticParams decides which pages exist. With dynamicParams set to false, a URL like /rent/kano becomes a clean 404 instead of an empty results page.\n- Nested dynamic segments pass their params down.The area level receives the purpose and state from its parent, so it only generates areas that exist in that state.\n- An optional catch-all lets one file handle a whole tree /areas, /areas/lagos and /areas/lagos/yaba are all the same route with a different number of segments.\n- Demo APIs need a warning label. The US feed uses random test data (a one-bedroom \"rental\" for $13 million), so I marked it clearly as sample data."
 }
