@@ -2,12 +2,16 @@
   "title": "Online Learning Platform",
   "day": 14,
   "category": "Next.js + TypeScript",
-  "status": "building",
+  "status": "shipped",
   "featured": false,
-  "summary": "TypeScript and data modelling",
-  "cover": "",
-  "tech": [],
-  "liveUrl": "",
-  "repoUrl": "",
-  "body": ""
+  "summary": "A learning platform with short, practical courses for Nigerian learners, with video, reading and quiz lessons, saved progress, streaks and printable certificates, built on a fully typed data model.",
+  "cover": "/uploads/imo learning.jpg",
+  "tech": [
+    "Next.js",
+    "Tailwind css",
+    "Typescript"
+  ],
+  "liveUrl": "https://imo-learning-platform.vercel.app/",
+  "repoUrl": "https://github.com/damex7/30days-14-learning-platform",
+  "body": "**What it does**\n\nÌmọ̀ (Yoruba for \"knowledge\") offers short, practical courses for Nigerian learners in tech skills, design, small business, money skills and exam prep, such as Build your first website, Excel for small business, Bookkeeping for market traders and JAMB Use of English practice. The catalogue can be filtered by category, level, price and length, and the filters live in the URL so a search can be shared. Each course has video, reading and quiz lessons in a calm lesson player with a ticked-off outline. Quizzes show your score and an explanation for every answer, keep your best attempt and need 70% to pass. A dashboard tracks your progress and learning streak, and when you finish every lesson and pass every quiz, you get a printable certificate. Until then, the certificate page lists exactly what's left.\n\n**How I built it**\n\nThe learning focus was TypeScript and data modelling, so I designed the data before the pages. Every entity, from courses and modules to lessons, questions and quiz attempts, is a Zod schema, and its TypeScript type is derived from it. Each shape is written once, and the same schemas check the seed data, the URL and the saved progress.\n\nA lesson is a union of three kinds (video, article or quiz), and every place that handles lessons ends with a never check. When I tested adding a fourth kind, the compiler listed exactly the eight places that needed updating. IDs are branded types, so a lesson ID can't be passed where a course ID is expected. Tables point at each other by ID instead of nesting, like database tables, and one function joins them into a course outline. Course length, lesson count and ratings are calculated, never stored, so they can't go out of date.\n\nA data check script validates all 102 lessons and 111 questions, then checks every reference between them and fails loudly on a broken link. Progress is saved in the browser with a version number and a schema, so old, corrupt or unknown data is recovered safely, with a migration from version 1 to version 2.\n\n**What I learned**\n\n- Define each shape once. Deriving types from Zod schemas means the type and the runtime check can't drift apart.\n- Exhaustive switches turn new features into a to-do list. With a never check, adding a lesson kind makes the compiler point to every place that needs updating, and nothing else.\n- Branded types catch mixed-up IDs. At runtime they're plain strings, but the compiler treats a course ID and a lesson ID as different things.\n- Saved data is outside input. localStorage can hold old, edited or half-written data, so it needs a schema and a version number, just like data from an API.\n- Fonts need testing with real text. My first display font misplaced Yoruba tone marks on letters like ọ̀ and ẹ́. I compared fonts side by side and switched to Literata, which places them correctly."
 }
