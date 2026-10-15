@@ -1,13 +1,19 @@
 {
-  "title": "Restaurant Ordering System",
+  "title": "Bùkà: Restaurant Ordering System",
   "day": 15,
   "category": "Next.js + TypeScript",
-  "status": "building",
+  "status": "shipped",
   "featured": false,
-  "summary": "Server and client components",
-  "cover": "",
-  "tech": [],
-  "liveUrl": "",
-  "repoUrl": "",
-  "body": ""
+  "summary": "Bùkà is an ordering site for a Nigerian restaurant in Wuse 2, Abuja. Customers order for delivery, pickup, or from a table by scanning its QR code, and pay on delivery, at the counter, or at the table.",
+  "cover": "/uploads/buka.jpg",
+  "tech": [
+    "Next.js (App Router)",
+    "TypeScript",
+    "Tailwind CSS v4",
+    "Zod",
+    "Vercel"
+  ],
+  "liveUrl": "https://buka-restaurant-ordering.vercel.app/",
+  "repoUrl": "https://github.com/damex7/30days-15-restaurant-ordering",
+  "body": "**What it does**\n\n- A 30-dish menu in six categories, with search, dietary filters (vegetarian, no nuts, no fish, mild), spice levels and sold-out dishes\n- Dishes with choices that change the price, such as the protein with jollof or the soup with amala.\n- Delivery across Abuja, pickup in time slots, and dine-in through `/table/[number]`\n- Opening hours and open or closed status in Lagos time\n- “Today’s specials” load behind the rest of the page, so the menu shows straight away\n\n**What I learned**\n\n- **Server by default.** Pages stay on the server, and `\"use client\"` goes only on small pieces that need state or events.\n- **Never trust the browser’s prices.** It sends dish IDs, choices and quantities, and the server looks up every price and recalculates the total.\n- **`server-only` protects data code.** Importing it from a client component fails the build.\n- **Streaming with Suspense.** A slow section arrives later without holding up the page.\n- **Time is a hydration trap.** Open and closed status is worked out on the server in Lagos time, so every phone gets the same answer"
 }
