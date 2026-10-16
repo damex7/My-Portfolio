@@ -1,13 +1,21 @@
 {
-  "title": "Notes App",
+  "title": "Ìrántí - Notes App",
   "day": 16,
   "category": "Full-stack",
-  "status": "building",
+  "status": "shipped",
   "featured": false,
-  "summary": "Next.js + PostgreSQL",
-  "cover": "",
-  "tech": [],
-  "liveUrl": "",
-  "repoUrl": "",
-  "body": ""
+  "summary": "A notes app backed by a real PostgreSQL database, with tags, pinning, trash, full-text search and autosave that never overwrites a note changed on another device.",
+  "cover": "/uploads/notes.jpg",
+  "tech": [
+    "Next.js",
+    "TypeScript",
+    "PostgreSQL",
+    "Neon",
+    "Zod",
+    "Tailwind CSS",
+    "Vercel"
+  ],
+  "liveUrl": "https://iranti-notes-app.vercel.app/",
+  "repoUrl": "https://github.com/damex7/30days-16-notes-app",
+  "body": "**What it does**\n\nÌrántí (\"remembrance\" in Yoruba) is a calm notes app. Notes live in a PostgreSQL database, so a note written on my phone is already there when I open my laptop. Pinned notes come first, then the most recently edited. Notes can be tagged, filtered by tag, archived, or moved to a trash where they can be restored or deleted for good. Search uses PostgreSQL's own full-text search and highlights the matching words, and the search sits in the URL, so it can be shared and survives a refresh. The editor autosaves a moment after I stop typing and shows \"Saving…\", \"Saved\" or \"Couldn't save, retrying\". If the same note was changed in another tab or on another device, it says so and lets me reload theirs or keep mine instead of quietly overwriting it. It's a public demo with no accounts yet, so everyone shares the same notes.\n\n**How I built it**\n\nThis was the first day of the full-stack phase. On Days 12–15 every page read typed sample data through one module. Today that module was replaced by plain SQL against PostgreSQL on Neon, using the @neondatabase/serverless driver and no ORM, so I could see what an ORM will later do for me. All the queries live in two server-only files, and the pages barely changed shape.\n\nThe schema is built from four numbered SQL migration files, applied by a small script that records each one so it only runs once. There are three tables: notes, tags, and a note_tags join table for the many-to-many relationship. Constraints guard the data even if the app is bypassed, a database trigger keeps updated_at current, and a generated tsvector column with a GIN index powers search. Every row already has an owner_id, filled from one demo owner for now, so adding logins on Day 17 only changes where that ID comes from. The database is in Frankfurt and the Vercel functions run there too, so every query stays a short trip.\n\n**What I learned**\n\n- Migrations, not hand edits. The schema's history lives in git, and a fresh database is one command away.\n- Parameterised queries stop SQL injection. User input is sent separately from the SQL, so it can never become part of the command.\n- Transactions keep data whole. A note and its tags are saved together or not at all.\n- Optimistic concurrency. Every save sends the version it started from, and the update only succeeds if nobody changed the note in between.\n- Indexes are built for real queries. I checked them with EXPLAIN on 25,000 test rows, and used keyset pagination instead of OFFSET, which slows down the deeper you page.\n- Serverless apps need the pooled connection string, because each request can start a new function, and PostgreSQL can only hold a limited number of direct connections."
 }
