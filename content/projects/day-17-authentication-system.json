@@ -1,13 +1,23 @@
 {
-  "title": "Authentication System",
+  "title": "Kọ́kọ́rọ́ — Authentication System",
   "day": 17,
   "category": "Full-stack",
-  "status": "building",
+  "status": "shipped",
   "featured": false,
-  "summary": "Auth and database",
-  "cover": "",
-  "tech": [],
-  "liveUrl": "",
-  "repoUrl": "",
-  "body": ""
+  "summary": "A complete sign-in system built by hand, with no auth library: sign-up, email verification, database sessions, password reset, rate limiting, a sessions page and an admin area.",
+  "cover": "/uploads/kokoro.jpg",
+  "tech": [
+    "Next.js 16",
+    "Resend",
+    "Zod",
+    "argon2id",
+    "Plain SQL",
+    "PostgreSQL (Neon)",
+    "TypeScript",
+    "Vercel",
+    "Tailwind CSS v4"
+  ],
+  "liveUrl": "https://kokoro-auth-system.vercel.app/",
+  "repoUrl": "https://github.com/damex7/30days-17-auth-system",
+  "body": "Kọ́kọ́rọ́ (“key” in Yoruba) is where my apps learn who you are. Until Day 16, everyone shared the same data. Here, every person gets their own account, and the server checks who they are on every request.\n\nI built the auth myself instead of using Auth.js or Clerk, so I could see each piece. Passwords are hashed with argon2id and never stored. Logging in creates a random 32-byte token in an httpOnly cookie, and the database keeps only its SHA-256 hash. Sessions are rows in PostgreSQL, so you can see every device you’re signed in on and end any of them instantly. Active sessions renew themselves, and changing your password signs out every other device.\n\nOn the security side, passwords found in data breaches are refused through Have I Been Pwned’s k-anonymity check. Login and sign-up are rate limited in Postgres. Login and password reset answer the same way whether or not an account exists, so nobody can fish for emails. The `?next=` redirect after login only accepts pages on this site. Every sign-in, failure and admin action is written to an audit log. Admins can search users, change roles and sign anyone out everywhere.\n\n**What I learned:**\n\n- Hashing isn’t encryption: a hash can’t be reversed, which is exactly why it’s safe for passwords.\n- A session is just a database row plus a cookie, so deleting the row signs someone out immediately.\n- Store only a hash of the session token, so a database leak doesn’t hand out logins.\n- Hiding a page isn’t protection. The proxy can redirect early, but the real check has to run on the server for every page and action.\n- Environment variables and migrations must match the live database. My first deploy pointed at an empty database, and sign-up failed until I migrated it."
 }
