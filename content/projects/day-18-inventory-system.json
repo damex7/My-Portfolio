@@ -1,13 +1,20 @@
 {
-  "title": "Inventory System",
+  "title": "Inventory System (Ìpamọ́)",
   "day": 18,
   "category": "Full-stack",
-  "status": "building",
+  "status": "shipped",
   "featured": false,
-  "summary": "CRUD with PostgreSQL",
-  "cover": "",
-  "tech": [],
-  "liveUrl": "",
-  "repoUrl": "",
-  "body": ""
+  "summary": "Ìpamọ́ (Yoruba for “keeping safe”) is a stock manager for a small Nigerian shop. The demo is a provisions store in Abuja with a shop floor and a store room. Staff record deliveries, sales, damaged goods, returns and transfers. The owner sees what is running low, what the stock is worth, and who changed what.",
+  "cover": "/uploads/ipamo-inventory system.jpg",
+  "tech": [
+    "Next.js 16 (App Router)",
+    "Zod",
+    "PostgreSQL on Neon (plain SQL, no ORM)",
+    "Tailwind CSS v4",
+    "TypeScript (strict)",
+    "Vercel"
+  ],
+  "liveUrl": "https://ipamo-inventory-system.vercel.app/",
+  "repoUrl": "https://github.com/damex7/30days-18-inventory-system",
+  "body": "_What it does_\nÌpamọ́ tracks products, categories, suppliers and two stock locations. Every change to stock (receive, sell, damage, return, transfer, count correction) is recorded in a ledger that shows who did it and when. The dashboard shows stock value at cost and at selling price, plus what is low or out. The low-stock report groups items by supplier and copies a ready-to-send WhatsApp order list. Products and the ledger can be exported as CSV, and products can be imported from CSV with a per-row preview. Admins create staff accounts, because sign-up is closed.\n\n_How I built it_\nThis was the first day with several related tables: categories, suppliers, locations, products, stock levels and an append-only movement ledger. Every foreign key has a deliberate `ON DELETE` rule. Products, suppliers and categories that have history are archived instead of deleted. Trying to delete one gives a friendly explanation, not a database error.\n\nEvery stock change is one database transaction that records the movement and updates the stock level together. A guarded update only runs if the result stays at zero or above, so two people selling the last tin at the same moment can’t push stock negative. A CHECK constraint is the safety net. Mistakes are fixed with a new adjustment, never by editing history. Product edits carry a version number, so a second person saving over the same product is told what changed instead of overwriting it. Money is stored as whole kobo and shown as Naira. Filters, sorting and pages live in the URL.\n\nThe authentication is the system I built by hand on Day 17, copied in with changes: sign-up is closed, roles are staff and admin, and admins create accounts with temporary passwords. Staff can record stock, and only admins can change products, prices and counts. Every action checks the role on the server.\n\nThe design takes its look from the carbon-copy receipt books used in Nigerian shops: off-white paper, carbon-black ink, a rose accent and canary-yellow highlights. On a phone the product table turns into cards.\n\n_What I learned_\n\n- **Foreign keys need deliberate delete rules.** Every relationship got its own `ON DELETE` choice, and rows with history are archived instead of deleted.\n- **A ledger beats editing a number.** Stock is the sum of movements that are never changed, so the history always adds up and mistakes leave a trail.\n- **Transactions and guarded updates stop race conditions.** The update only runs if stock stays at zero or above, and the CHECK constraint is the backstop.\n- **A CHECK passes on NULL.** My rule for “adjustments need a reason” let a missing reason through, because `length(NULL)` is NULL. A test insert caught it, and a later migration fixed it.\n- **RESTRICT raises error code 23001, not 23503.** Code that only catches 23503 would miss every refusal in this schema.\n- **Optimistic concurrency again.** The version column from Day 16 now protects shared product edits.\n- **Never trust the buttons.** Hiding a button is tidiness, so every action checks the role on the server."
 }
