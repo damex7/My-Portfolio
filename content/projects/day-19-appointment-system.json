@@ -1,13 +1,20 @@
 {
-  "title": "Appointment System",
+  "title": "Ìpàdé: Appointment Booking System",
   "day": 19,
   "category": "Full-stack",
-  "status": "building",
+  "status": "shipped",
   "featured": false,
-  "summary": "Auth and scheduling",
-  "cover": "",
-  "tech": [],
-  "liveUrl": "",
-  "repoUrl": "",
-  "body": ""
+  "summary": "A booking app for a hair and beauty studio in Lekki, Lagos. Clients pick a service, a stylist and an open time, and get a confirmation email with a calendar file. Stylists see only their own schedule, and the admin runs the whole studio. The database itself makes sure two bookings can never overlap.",
+  "cover": "/uploads/ipade.jpg",
+  "tech": [
+    "Next.js 16 (App Router)",
+    "Resend",
+    "PostgreSQL (Neon)",
+    "Tailwind CSS v4",
+    "TypeScript",
+    "Vercel Cron"
+  ],
+  "liveUrl": "https://ipade-appointment-system.vercel.app/",
+  "repoUrl": "https://github.com/damex7/30days-19-appointment-system",
+  "body": "Ìpàdé (“meeting” or “appointment” in Yoruba) is Day 19 of my 30-day challenge, and the focus was auth and scheduling. I reused the auth I built by hand on Day 17 and gave it three roles: clients, stylists and an admin.\n\nClients choose a service, then a stylist or “any available stylist”, then a date and an open time. Every step is saved in the URL, so the back button, refreshing and logging in halfway through all keep their place. After booking, they get an email with a calendar file, and they can reschedule or cancel up to 12 hours before. Stylists see only their own appointments, mark them completed or no-show, and book time off. The admin sees every stylist side by side for the day, manages services, working hours, public holidays and settings, and can book walk-in clients.\n\nThe hardest part was making sure a slot can never be double-booked. The open times are worked out inside PostgreSQL: working hours, minus closures, minus time off, minus existing bookings. When a client books, the time is checked again in the same statement that saves it, so a hand-made request can’t book a closed hour. If two clients press “Book” on the same slot at the same moment, an exclusion constraint in the database lets only one through, and the other sees “Sorry, that time was just taken” with the next three open times.\n\nAll times are stored in UTC and always shown in Lagos time, whatever time zone the visitor’s phone is set to. Each client can only see their own bookings: change the ID in the URL and you get a 404. A daily job emails reminders for tomorrow’s appointments, and it can’t send the same reminder twice.\n\n**What I learned:**\n\n- A check in the app can’t stop a double booking, because two requests can both check before either saves. An exclusion constraint in the database can.\n- The difference between a rule (“10:00 every Tuesday”) and an instant (a specific moment), and why working hours are stored as the first and bookings as the second.\n- Time zones: store UTC, keep the studio’s zone as data, and convert in one place with the built-in Intl API instead of a date library.\n- Ownership checks belong in the SQL query itself, not just on the page.\n- EXPLAIN showed a missing type cast that stopped an index being used. One `::smallint` fixed it.\n- A streamed Next.js page has already sent “200 OK” before it can decide on a 404, so that check has to happen earlier, in the proxy."
 }
