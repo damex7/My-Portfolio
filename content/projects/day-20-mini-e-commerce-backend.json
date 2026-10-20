@@ -1,13 +1,22 @@
 {
-  "title": "Mini E-commerce Backend",
+  "title": "Ọjà: E-commerce Backend",
   "day": 20,
   "category": "Full-stack",
-  "status": "building",
+  "status": "shipped",
   "featured": false,
-  "summary": "Products, orders and users",
-  "cover": "",
-  "tech": [],
-  "liveUrl": "",
-  "repoUrl": "",
-  "body": ""
+  "summary": "The backend for an Aba-made leather goods brand: a versioned REST API for products, carts, orders and payments, with a small storefront and admin built on top to prove it works.",
+  "cover": "/uploads/oja.jpg",
+  "tech": [
+    "Next.js 16 (App Router)",
+    "PostgreSQL on Neon (plain SQL, no ORM)",
+    "Zod",
+    "Resend",
+    "Paystack (test mode)",
+    "Tailwind CSS v4",
+    "Vercel",
+    "TypeScript (strict)"
+  ],
+  "liveUrl": "https://oja-ecommerce-backend.vercel.app/",
+  "repoUrl": "https://github.com/damex7/30days-20-ecommerce-backend",
+  "body": "Ọjà is the backend for a leather brand selling shoes, bags, belts and sandals from Ariaria market in Aba. Until Day 19, my pages called Server Actions directly. Today I built something other apps could use: a versioned REST API at `/api/v1`, documented on its own `/docs` page generated from an OpenAPI document. The storefront and admin on top use the same service layer, so the rules are identical whether you click a button or send a request.\n\nCustomers browse with filters, search and sort, keep a cart, apply coupons, choose a delivery state and pay through Paystack in test mode. Staff manage products, stock and orders. Admins manage coupons, delivery fees, users, API keys and the webhook log. A demo mode gives each visitor their own private customer account in one click, while the staff and admin views are read-only.\n\n**What I learned:**\n\n- Splitting the code into three layers (SQL, business rules, thin transport) keeps the website and the API from disagreeing with each other.\n- Idempotency keys stop a double tap or a bad network from creating two orders.\n- Cursor pagination stays fast on deep pages and doesn’t skip or repeat rows, unlike OFFSET.\n- A single table of allowed order status moves is easier to trust than checks scattered across the code.\n- Stock is taken with a guarded update inside one transaction, so it can’t go below zero even when two buyers race for the last item.\n- A webhook has to verify its HMAC signature before anything is read, and the amount must match the order.\n- Returning 404 instead of 403 for someone else’s order doesn’t reveal whether it exists.\n- Running EXPLAIN on real queries showed two weak spots (a rare size and colour combination with a price sort, and full-text search at small scale), which I wrote up honestly in the README."
 }
