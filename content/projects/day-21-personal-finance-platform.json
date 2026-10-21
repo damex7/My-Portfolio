@@ -2,12 +2,20 @@
   "title": "Personal Finance Platform",
   "day": 21,
   "category": "Full-stack",
-  "status": "building",
+  "status": "shipped",
   "featured": false,
-  "summary": "Transactions and budgets",
-  "cover": "",
-  "tech": [],
-  "liveUrl": "",
-  "repoUrl": "",
-  "body": ""
+  "summary": "A private money ledger for life in Nigeria. It tracks money across a bank account, OPay or Moniepoint wallets, cash and savings in one place. It handles transfers, split payments, monthly budgets, recurring payments and bank-statement imports. Balances are worked out from the ledger entries, never typed in, and only the owner can see their data, not even an admin.",
+  "cover": "/uploads/apo.jpg",
+  "tech": [
+    "Next.js (App Router)",
+    "Resend",
+    "Zod",
+    "PostgreSQL",
+    "Tailwind CSS",
+    "TypeScript",
+    "Vercel"
+  ],
+  "liveUrl": "https://apo-personal-finance.vercel.app/",
+  "repoUrl": "https://github.com/damex7/30days-21-personal-finance",
+  "body": "Àpò (Yoruba for “pouch” or “purse”) is Day 22 of my 30-day challenge, and the focus was getting money right. Most Nigerians I know keep their money in several places at once: a bank account, OPay or Moniepoint, cash, and a savings app. No single app shows the whole picture, so I built one."
 }
