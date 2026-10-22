@@ -1,13 +1,22 @@
 {
-  "title": "Event Ticketing Platform",
+  "title": "Gatepass: Event Ticketing Platform",
   "day": 22,
   "category": "Full-stack",
-  "status": "building",
+  "status": "shipped",
   "featured": false,
-  "summary": "Bookings and QR codes",
-  "cover": "",
-  "tech": [],
-  "liveUrl": "",
-  "repoUrl": "",
-  "body": ""
+  "summary": "An event ticketing platform for Nigerian events. Organisers create events with ticket types like Regular, VIP or a free RSVP. Attendees pay with Paystack without needing an account, and every seat gets its own QR-code ticket by email. Door staff scan the codes with a phone, and each ticket checks in exactly once. It never sells more tickets than there are seats, even when many people buy at the same moment.",
+  "cover": "/uploads/gatepass.jpg",
+  "tech": [
+    "Next.js 16 (App Router)",
+    "Resend",
+    "Paystack (test mode)",
+    "Zod",
+    "PostgreSQL (Neon)",
+    "Tailwind CSS v4",
+    "TypeScript",
+    "Vercel Cron"
+  ],
+  "liveUrl": "https://gatepass-event-ticketing-platform.vercel.app/",
+  "repoUrl": "https://github.com/damex7/30days-22-event-ticketing-platform",
+  "body": "Gatepass is Day 22 of my 30-day challenge. The focus was payments, inventory under concurrency, webhooks and signed QR codes.\n\nAny signed-up user can organise an event: add ticket types with a price, a quantity and an optional sales window, then publish. Attendees browse with filters that live in the URL, pick quantities and pay on Paystack’s hosted page. Free tickets skip Paystack entirely and are issued straight away. Every seat becomes its own ticket with a QR code, shown on the site and sent by email with a private link. Each ticket also has an add-to-calendar file. Organisers see sales, a 14-day chart and the attendee list. They can export a CSV and add door staff, who see only the scanner for that event.\n\nThe core problem was never overselling. When you start checkout, your seats are held for 15 minutes with a countdown. The hold is a single database update that only succeeds if seats are still left. When 20 people tried to buy the last 5 tickets at the same moment, exactly 5 succeeded. Expired holds give their seats back automatically.\n\nPayments had to work exactly once. Paystack confirms a payment in two ways: it sends the buyer’s browser back to the site, and it calls a webhook. These can arrive in either order, or at the same moment. Both run the same function, and row locks plus a unique index make sure only one set of tickets is ever issued. The webhook’s signature is checked before anything happens, and a repeated webhook does nothing. A payment whose amount doesn’t match the order is refused.\n\nEach QR code carries a cryptographic signature, so a fake or edited code is rejected before the database is even checked. At the door, the check-in is one database update that only works while the ticket is still valid. Two phones scanning the same ticket get one “Admit” and one “Already checked in” with the time of the first scan.\n\nAll money is stored as whole kobo, with no decimals. Times always show in Lagos time, and visitors only ever see their own orders.\n\n**What I learned:**\n\n- Checking stock and then selling it leaves a gap where two buyers both see “1 left”. A single conditional update closes that gap.\n- Never trust the payment redirect. Ask Paystack directly, and treat the webhook as the backup.\n- Idempotency: a double tap or a retry with the same key gives back the same order, not a second one.\n- A webhook signature is checked against the raw request body, before the JSON is parsed.\n- Signed QR codes can be checked without the database, so guessed codes fail instantly.\n- Composite foreign keys stop a ticket from pointing at another event’s ticket type, even if the app code has a bug."
 }
