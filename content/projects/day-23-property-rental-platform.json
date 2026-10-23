@@ -1,13 +1,24 @@
 {
-  "title": "Property Rental Platform",
+  "title": "Staybook: Property Rental Platform",
   "day": 23,
   "category": "Full-stack",
-  "status": "building",
+  "status": "shipped",
   "featured": false,
-  "summary": "Listings, search and bookings",
-  "cover": "",
-  "tech": [],
-  "liveUrl": "",
-  "repoUrl": "",
-  "body": ""
+  "summary": "A short-let rental platform for Nigeria, from Lekki Phase 1 and Victoria Island to Wuse 2, Maitama and Bodija. Guests search by area, dates, guests and budget, and see only places that are free on those dates, with the total for the stay already worked out. They book and pay with Paystack. Hosts list their places with photos, set prices and block nights on a calendar. The database itself makes it impossible for two guests to book the same night.",
+  "cover": "/uploads/staybook.jpg",
+  "tech": [
+    "Next.js 16 (App Router)",
+    "Paystack (test mode)",
+    "Leaflet + OpenStreetMap",
+    "Vercel Blob",
+    "Zod",
+    "PostgreSQL (Neon) with pg_trgm and btree_gist",
+    "Resend",
+    "Tailwind CSS v4",
+    "TypeScript",
+    "Vercel Cron"
+  ],
+  "liveUrl": "https://staybook-property-rental.vercel.app/",
+  "repoUrl": "https://github.com/damex7/30days-23-property-rental",
+  "body": "Staybook is Day 23 of my 30-day challenge, and the focus was listings, search and bookings.\n\nEvery search lives in the URL, so it can be bookmarked or shared, and it becomes one SQL query. Full-text search combines with trigram matching, so “Leki” or “Victoria Iland” still find the right place. Then come the filters for price, type, bedrooms and amenities. Only listings with no held or confirmed stay on the chosen nights are returned. Results page with cursors instead of OFFSET.\n\nBookings and host blocks share one `stays` table, protected by a PostgreSQL exclusion constraint on date ranges. Ranges are stored as `[check-in, check-out)`, so one guest can check out on the 12th and the next check in the same day, but two stays can never overlap. Reserving creates a 15-minute hold. Payment is confirmed exactly once, whether the callback or the webhook arrives first. A late payment or a wrong amount is refused and flagged for a refund.\n\nPrices are calculated only on the server, night by night in Lagos time, with weekend rates, a weekly discount, cleaning fee, service fee and caution deposit. Photos upload straight from the browser to Vercel Blob, so they never pass through my server. The exact address stays hidden until a booking is confirmed. Public pages only show an approximate area, and coordinates are rounded on the server.\n\nA check script runs 13 booking rules against the real database. One of them sends 10 simultaneous reserves for the same nights: exactly 1 gets a hold.\n\n**What I learned:**\n\n- **Let the database say no.** An exclusion constraint on date ranges stops double bookings even when 10 requests arrive at the same moment. A check in my code can’t promise that.\n- **`[)` ranges model hotel nights.** Check-in is included and check-out isn’t, so back-to-back stays fit without any special cases.\n- **A map filter can leak a location.** Filtering on exact coordinates lets someone shrink the map box until a listing disappears, which reveals where it is. The filter has to use the same rounded values the map shows.\n- **Never trust a price from the browser.** The server recalculates the total at booking time and saves a snapshot on the stay.\n- **“Did you mean…?” needs to know why the results were empty.** It should only appear when the place matched nothing, not when the place is simply booked up on those dates."
 }
