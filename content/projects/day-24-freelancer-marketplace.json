@@ -1,13 +1,21 @@
 {
-  "title": "Freelancer Marketplace",
+  "title": "Gigroom: Freelancer Marketplace",
   "day": 24,
   "category": "Full-stack",
-  "status": "building",
+  "status": "shipped",
   "featured": false,
-  "summary": "Profiles, proposals and messaging",
-  "cover": "",
-  "tech": [],
-  "liveUrl": "",
-  "repoUrl": "",
-  "body": ""
+  "summary": "A freelancer marketplace for Nigeria. Clients post jobs with budgets in naira, and freelancers send proposals with a price, timeline and cover letter. They chat privately before hiring, and one click turns a proposal into a contract. When the work is done, both sides leave reviews.",
+  "cover": "/uploads/gigroom.jpg",
+  "tech": [
+    "Next.js 16 (App Router, Cache Components)",
+    "Zod",
+    "PostgreSQL on Neon (plain SQL, no ORM)",
+    "Tailwind CSS v4",
+    "TypeScript",
+    "Resend",
+    "Vercel"
+  ],
+  "liveUrl": "https://gigroom-freelancer-marketplace.vercel.app/",
+  "repoUrl": "30days-24-freelancer-marketplace",
+  "body": "Day 24’s focus was profiles, proposals and messaging. Every proposal moves through clear states: submitted, shortlisted, then hired, declined or withdrawn. Hiring happens in one database transaction: it accepts the proposal, declines the others, creates the contract and opens the chat with a “Contract started” message. Either all of it happens or none of it does.\n\nThe chat uses polling instead of WebSockets because Vercel functions can’t keep a socket open. The browser asks “any messages after #N?” every 3 seconds, and every 15 seconds when the tab is hidden. Each message carries a random ID, so a retry after a dropped connection never creates a duplicate. Unread counts come from a per-person read pointer, and the other person gets one email per unread streak, not one per message.\n\nPrivacy is enforced twice. Every query checks ownership, and composite foreign keys make the database itself refuse a message from someone outside the chat, or a contract for a job the client doesn’t own. Admins can suspend accounts and take down jobs, but they can’t read private messages.\n\n**Lessons learned:**\n\n- Two people hiring at the same moment is a real race condition. Row locks (`FOR UPDATE`) plus a unique index make sure only one contract is created. My check script fires 10 hires at once and gets exactly 1.\n- Polling is a valid choice when a few seconds of delay is fine. It’s free, simple and works everywhere.\n- Returning “not found” instead of “forbidden” for other people’s records stops people from probing which IDs exist.\n- Next.js 16’s Cache Components meant any data that depends on the logged-in user has to stream in behind a Suspense boundary."
 }
