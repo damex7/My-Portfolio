@@ -1,13 +1,24 @@
 {
-  "title": "Multi-vendor Marketplace",
+  "title": "Wo Ọ̀nà: Live Delivery Tracker",
   "day": 25,
   "category": "Full-stack",
-  "status": "building",
+  "status": "shipped",
   "featured": false,
-  "summary": "Sellers, products and orders",
-  "cover": "",
-  "tech": [],
-  "liveUrl": "",
-  "repoUrl": "",
-  "body": ""
+  "summary": "Live delivery tracking for Nigerian businesses. Riders share their GPS while carrying a parcel, customers watch it arrive on a map from a WhatsApp link, and the handover is confirmed with a 4-digit code.",
+  "cover": "/uploads/wo-ona.jpg",
+  "tech": [
+    "Next.js 16",
+    "Resend",
+    "Vercel Blob",
+    "Leaflet + OpenStreetMap",
+    "Pusher Channels",
+    "Zod",
+    "PostgreSQL (Neon)",
+    "Tailwind CSS v4",
+    "TypeScript",
+    "Vercel"
+  ],
+  "liveUrl": "https://wo-ona-delivery-tracker.vercel.app/",
+  "repoUrl": "https://github.com/damex7/30days-25-wo-ona-delivery-tracker",
+  "body": "Wo Ọ̀nà is Yoruba for “look at the road”, which is what you do when you’re waiting for someone to arrive. A business creates a delivery and sends the customer a tracking link. A rider joins the business with its fleet code, takes the job on their phone and taps “Start trip”. From pickup to handover, the phone sends its location every few seconds, and the customer watches the rider move towards them with a rough arrival time. No app or account is needed. At the door, the customer reads a 4-digit code to the rider; five wrong tries lock it.\n\nLocation is only shared during the trip, only with that customer and business, and it disappears from the tracking page after delivery. Updates arrive instantly through Pusher, and the page falls back to checking every 3 seconds if that connection drops. A demo mode gives visitors their own business with three riders and a “Simulate ride” button, so anyone can watch a delivery move without leaving their chair.\n\n**What I learned:**\n\n- Real-time updates on serverless: why a Vercel function can’t hold WebSockets open, and how Pusher plus a polling fallback solves it\n- The browser location API (`watchPosition`), screen wake lock, and sending GPS in batches with an offline queue\n- Letting the database enforce the hard rules: one live trip per rider (a partial unique index) and riders only from your own fleet (a composite foreign key)\n- Race-proof status changes: 10 riders tapping “Take job” at once, and exactly one wins\n- Privacy by design: location only from pickup to handover, with no phone numbers on the public tracking page\n- Maps with Leaflet and OpenStreetMap: custom markers, smooth movement and following the rider"
 }
