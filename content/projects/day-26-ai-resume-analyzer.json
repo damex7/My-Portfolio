@@ -1,13 +1,21 @@
 {
-  "title": "AI Resume Analyzer",
+  "title": "Ìrànwọ́: AI Assistant for Small Businesses",
   "day": 26,
   "category": "AI",
-  "status": "building",
+  "status": "shipped",
   "featured": false,
-  "summary": "AI API and document analysis",
-  "cover": "",
-  "tech": [],
-  "liveUrl": "",
-  "repoUrl": "",
-  "body": ""
+  "summary": "An AI assistant for Nigerian small businesses that turns a sentence into an invoice and writes customer replies and product posts in your shop’s voice.",
+  "cover": "/uploads/iranwo.jpg",
+  "tech": [
+    "Next.js 16",
+    "Tailwind CSS v4",
+    "Zod",
+    "Claude API (Anthropic SDK)",
+    "PostgreSQL (Neon)",
+    "TypeScript",
+    "Vercel"
+  ],
+  "liveUrl": "https://iranwo-ai-assistant.vercel.app/",
+  "repoUrl": "https://github.com/damex7/30days-26-iranwo-ai-assistant",
+  "body": "Ìrànwọ́ (Yoruba for “help”) is an AI assistant that knows your shop. An owner describes their business once: what they sell, where they are, how they talk to customers, and their delivery and payment details. The assistant uses that profile for everything it writes. Type “2 Ankara at 18,500 each and 1 gele for 7k, delivery 3,500 to Mrs Adeyemi” and you get a clean invoice, ready to send on WhatsApp. Paste a customer’s message and get three replies to choose from. Name a product and get posts for Instagram, WhatsApp status and X.\n\n**Learning focus:** building a real product on an AI model: streaming responses, structured AI output, cost control and prompt-injection safety.\n\n**Key features:**\n\n- Invoice from a sentence: the AI reads the order and the server does every calculation in kobo\n- Customer reply writer with 5 goals (close the sale, handle a complaint, ask for payment…)\n- One product, three platforms: Instagram, WhatsApp status and X\n- Streaming chat with saved history\n- A daily AI limit per owner that resets at midnight Lagos time and can’t be bypassed\n- Admin panel to watch token usage, change limits and suspend accounts\n- Black-and-white design with automatic dark mode\n\n**What I learned:**\n\n- Streaming AI answers word by word from the server to the browser\n- Forcing the AI to answer in a fixed shape (Zod schema), then checking it again on the server\n- Never letting the AI do the maths: it reads the order, and my code calculates the totals\n- Making a usage limit race-proof with a single SQL statement\n- Protecting against prompt injection by treating pasted text as data, not instructions"
 }
