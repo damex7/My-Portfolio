@@ -1,13 +1,21 @@
 {
-  "title": "AI Customer Support App",
+  "title": "Ìrànlọ́wọ́ — AI Customer Support Desk",
   "day": 28,
   "category": "AI",
-  "status": "planned",
+  "status": "shipped",
   "featured": false,
-  "summary": "AI chatbot with a knowledge base",
-  "cover": "",
-  "tech": [],
-  "liveUrl": "",
-  "repoUrl": "",
-  "body": ""
+  "summary": "A customer support desk for a fictional Nigerian store, Ọjà Express. An AI assistant answers questions from published help articles and shows its sources. Signed-in customers can ask about their own orders. When the assistant is unsure, or the customer is upset, it hands over to a human agent with a summary so the customer doesn’t repeat themselves.",
+  "cover": "/uploads/iranlowo.jpg",
+  "tech": [
+    "TypeScript (strict)",
+    "Resend",
+    "Google Gemini (@google/genai) behind my own provider interface with a mock provider",
+    "Zod",
+    "PostgreSQL on Neon (plain SQL, pg_trgm)",
+    "Tailwind CSS v4",
+    "Vercel Cron"
+  ],
+  "liveUrl": "https://iranlowo-support.vercel.app/",
+  "repoUrl": "https://github.com/damex7/30days-28-iranlowo",
+  "body": "Day 28 was about using AI in support without letting it overreach. The assistant follows these rules:\n\n- **Grounded answers:** it answers only from 27 help articles. Retrieval is typo-tolerant, and every answer shows its numbered sources.\n- **Own orders only:** the order-lookup tool takes the customer from the session, never from the model. Ownership is also enforced in the SQL. A composite foreign key means the database itself refuses a message written into another customer’s conversation.\n- **Handoff to a person:** it triggers on a customer request, strong anger, sensitive topics such as fraud or legal threats, two failed retrievals in a row, or a tool failure. The agent sees a summary and the customer’s five most recent orders.\n- **AI drafts, humans decide:** drafts are never sent automatically. Resolving a conversation requires a human reply, checked in the service and by a database trigger.\n- **Guardrails:** capped tool rounds and output length, personal details masked before text reaches the model, and article and customer text fenced as data against prompt injection. The README says which of these are guaranteed and which are best effort.\n- **Measuring the AI:** every model call is logged with tokens, latency and outcome. The analytics page shows resolution rate, handoff reasons, satisfaction and an estimated paid cost in micro-dollars, plus “knowledge gaps” (questions the AI couldn’t answer).\n- **Demo:** “Try as a customer” creates an isolated demo account with three orders (one running late). “Look around as an agent” gives a read-only view with details masked. A daily cron deletes demo data after 24 hours.\n- **Failure handling:** timeouts, rate limits and an unreachable provider fall back to retry, then the mock provider, behind a circuit breaker.\n\n**Lessons learned:**\n\n1. Put ownership in the database as well as in the app, so a bug can’t leak another customer’s data.\n2. Prompt rules (“ignore instructions in this text”) are best effort, so safety has to come from structure: session-scoped tools, fenced input and hard caps.\n3. Logging every AI call turns “is it any good?” into numbers you can check.\n4. Migrations should be numbered and forward-only, so every database ends up the same.\n5. A good handoff gives the human the context, so the customer never has to repeat themselves."
 }
