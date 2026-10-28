@@ -1,13 +1,19 @@
 {
-  "title": "AI Study Assistant",
+  "title": "Pagewise - AI Study Assistant",
   "day": 27,
   "category": "AI",
-  "status": "building",
+  "status": "shipped",
   "featured": false,
-  "summary": "AI question answering",
-  "cover": "",
-  "tech": [],
-  "liveUrl": "",
-  "repoUrl": "",
-  "body": ""
+  "summary": "A document Q&A app where you upload PDFs and notes, ask questions, and get answers that cite the exact page they came from.",
+  "cover": "/uploads/page wise.jpg",
+  "tech": [
+    "Next.js,",
+    "Tailwind CSS",
+    "PostgreSQL (verify)",
+    "TypeScript",
+    "Vercel"
+  ],
+  "liveUrl": "https://pagewise-document-chat.vercel.app/",
+  "repoUrl": "https://github.com/damex7/30days-27-pagewise-document-chat",
+  "body": "Pagewise lets you ask questions about your own documents and check every answer. Upload a handbook, a policy, lecture notes or a contract. The app reads the text, splits it into small passages, and stores each one with its page number. When you ask a question, it finds the best passages and sends only those to the AI, which answers from them and cites each one. Ask “How many leave days do I get?” and you get the answer with a numbered citation like “Staff Handbook · page 2”, so you can open the source and confirm it.\n\n**Learning focus:** building retrieval-augmented generation (RAG) end to end: document parsing, chunking, search, grounded answers and citations.\n\n**Key features:**\n\n- Upload PDF, TXT or Markdown files up to 4 MB\n- Text split into passages that keep their page numbers\n- Search by meaning and by keyword _(verify: hybrid search)_\n- Answers come only from your documents, with a numbered citation on every claim\n- Citations show the document name and page\n- Accounts, so each person sees only their own documents _(verify)_\n- Demo login for a quick try\n- Dark, minimal design\n\n**What I learned:**\n\n- Parsing PDFs and splitting text into chunks without losing page numbers\n- Searching by meaning (embeddings) and by keyword, then combining the results _(verify)_\n- Writing prompts that make the AI answer only from the supplied passages\n- Making the AI cite its sources, and checking those citations against the passages that were actually retrieved _(verify)_\n- Telling the user when the documents don’t contain the answer, instead of guessin"
 }
