@@ -1,13 +1,22 @@
 {
-  "title": "AI Developer Assistant",
+  "title": "Codewise: An AI Workbench for Reading, Writing and Fixing Code",
   "day": 29,
   "category": "AI",
-  "status": "building",
+  "status": "shipped",
   "featured": false,
-  "summary": "Code explanation and generation",
-  "cover": "",
-  "tech": [],
-  "liveUrl": "",
-  "repoUrl": "",
-  "body": ""
+  "summary": "A workbench for students and junior developers in Nigeria. Paste code or an error, pick one of six modes (explain, generate, review, fix, write tests, convert) and get an answer that is checked before you see it. Review and fix answers come back as structured data that is validated, and fixes are shown as a diff the app computes itself. The AI only reads and writes text and never runs your code.",
+  "cover": "/uploads/codewise.jpg",
+  "tech": [
+    "Next.js 16 (App Router)",
+    "Google Gemini (@google/genai) with a mock fallback",
+    "Zod",
+    "PostgreSQL (Neon, plain SQL, pg_trgm)",
+    "Resend",
+    "Tailwind CSS v4",
+    "TypeScript (strict)",
+    "Vercel Cron"
+  ],
+  "liveUrl": "https://codewise-assistant.vercel.app/",
+  "repoUrl": "https://github.com/damex7/30days-29-codewise",
+  "body": "AI-written code is only useful if you can trust what you are shown, so I built Codewise around checks the AI can’t skip:\n\n- **Secrets stay out:** a scanner looks for API keys, private keys and passwords before anything is sent. If it finds one, nothing leaves the app. You see the line numbers and can mask the values.\n- **Answers are validated:** reviews and fixes must match a Zod schema. If the first answer fails, the app retries once, then shows the raw text labelled as unstructured. Line numbers are checked against your code.\n- **Diffs are computed here:** I wrote a longest-common-subsequence line diff, so a model can never invent a diff.\n- **Pasted code is data:** a comment saying “ignore your instructions” is treated as text, and the AI has no tools and runs nothing.\n- **Free-tier limits:** per-minute and per-day caps stop one user using up the quota. If Gemini returns a rate-limit error, the app retries once, then answers from a clearly labelled mock. A 60-second circuit breaker avoids repeated failed calls.\n- **Shared snippets:** a snippet can be shared by an unguessable read-only link, stored hashed and revocable. Ownership is enforced in the services and in the database, and someone else’s record returns 404.\n\n**Lessons learned:**\n\n1. Treat model output like user input: validate it, retry once, then fall back honestly.\n2. A secrets scanner before the provider call is cheaper than trying to undo a leak.\n3. Safety comes from structure (no tools, no code execution, size caps). Prompt wording is only best-effort.\n4. A database-backed rate limiter works on serverless, where in-memory counters don’t.\n5. Label every fallback answer, so the user always knows whether a real model or the mock replied."
 }
