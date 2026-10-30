@@ -1,13 +1,22 @@
 {
-  "title": "AI-Powered Business Management Platform",
+  "title": "Ledgerline: AI-Powered Business Management Platform",
   "day": 30,
   "category": "AI",
-  "status": "building",
+  "status": "shipped",
   "featured": false,
-  "summary": "Next.js, TypeScript, PostgreSQL, auth and AI",
-  "cover": "",
-  "tech": [],
-  "liveUrl": "",
-  "repoUrl": "",
-  "body": ""
+  "summary": "An AI-powered business management platform for small Nigerian businesses. Customers, stock, invoices, payments and expenses, all kept correct to the kobo, plus an assistant that answers questions about your own books and never changes anything without your approval.",
+  "cover": "/uploads/ledgerline.jpg",
+  "tech": [
+    "Next.js 16 (App Router), , , , , , ,",
+    "Resend",
+    "Google Gemini (@google/genai)",
+    "Zod",
+    "PostgreSQL (Neon)",
+    "Tailwind CSS v4",
+    "TypeScript",
+    "Vercel (with a daily cron)"
+  ],
+  "liveUrl": "https://ledgerline-ochre.vercel.app/",
+  "repoUrl": "https://github.com/damex7/30days-30-ledgerline",
+  "body": "Day 30 is the flagship of the challenge: a complete multi-tenant product that pulls together everything from the previous 29 days. A user can create business workspaces, invite members as owner, manager or staff, and switch between businesses. Inside a workspace they manage customers, products with a stock ledger, invoices with gapless numbers (INV-0001, INV-0002…), partial payments with reversals, expenses, and a dashboard with reports and CSV export.\n\nThe assistant, “Ask Ledgerline”, answers questions in English or Pidgin by calling a fixed list of read-only tools. The workspace always comes from the server session, never from the model, and the model never writes SQL. It can also draft an invoice from plain text, but that only creates a proposal. Nothing is created until a person approves it. Every figure in an answer is checked against the tool results, and anything unverified is flagged.\n\nUnder the hood, multi-tenancy is enforced twice, in the service layer and in the database with composite foreign keys. Money is stored as integer kobo, and stock can’t go below zero even when two people sell the last item at once. A `check:ledgerline` script verifies the invariants against a real database. Everything is built from scratch: auth, sessions, rate limiting, migrations, charts as accessible SVG, with no ORM or UI libraries.\n\n**Lessons learned:**\n\n- Enforcing rules in the database as well as the code means a bug in one layer can’t leak data between businesses.\n- An AI that can only call read-only tools, with a human approving any write, is far easier to trust than one with open access.\n- Let SQL compute the numbers and let the model only explain them.\n- Free-tier AI needs limits, fallbacks and honest labels from day one.\n- Thirty projects in thirty days is mostly about reusing small, solid patterns until they become habits."
 }
