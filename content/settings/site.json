@@ -1,17 +1,19 @@
 {
   "name": "Abdrahman Abubakar",
   "wordmark": "Abdrahman Abubakar",
-  "role": "Frontend & full-stack developer and engineer",
-  "headline": "Full-stack developer and engineer\nCurrently building one project a day for the next 30 days.",
-  "intro": "A full-stack developer building fast, reliable web applications, from the interface to the database.",
+  "role": "Full-stack developer",
+  "headline": "I build fast, reliable web applications, from the interface to the database.",
+  "intro": "Frontend & full-stack developer working with React, Next.js, TypeScript, Node.js and PostgreSQL. I recently completed a 30-day challenge, shipping one project every day.",
+  "availability": "Available now for full-time roles and freelance or contract work, remote and worldwide.",
   "photo": "/uploads/WhatsApp Image 2026-09-28 at 2.23.31 PM.jpeg",
   "email": "abdrahmanabubakar7000@gmail.com",
   "phone": "+234 903 538 4134",
+  "whatsapp": "+234 903 538 4134",
   "location": "Nigeria",
   "available": true,
   "cvUrl": "",
   "challengeStart": "2026-09-28",
-  "about": "I'm a full-stack developer and engineer who builds web applications end to end. On the frontend, I work with HTML5, CSS, Javascript, React, Next.js, TypeScript and Tailwind CSS to create interfaces that are fast, accessible and easy to use. On the backend, I build APIs, design PostgreSQL databases, MYSQL and PHP, and set up authentication, so the whole product holds together.\n\nI learn by shipping. Right now I'm building one project a day for 30 days, moving from React fundamentals to full-stack apps with AI features.\n\nI'm looking for teams and projects where I can contribute from day one, take on unfamiliar problems and keep growing as an engineer.",
+  "about": "I'm a full-stack developer and engineer who builds web applications end to end. On the frontend, I work with HTML5, CSS, Javascript, React, Next.js, TypeScript and Tailwind CSS to create interfaces that are fast, accessible and easy to use. On the backend, I build APIs, design PostgreSQL and MySQL databases, write PHP back ends and set up authentication, so the whole product holds together.\n\nI learn by shipping. I recently completed a 30-day challenge, building and shipping one project a day, from React fundamentals to full-stack apps with AI features.\n\nI'm available now for full-time roles and freelance or contract work. I work remotely with teams worldwide and can start immediately, ready to contribute from day one, take on unfamiliar problems and keep growing as an engineer.",
   "socials": [
     {
       "label": "GitHub",
@@ -19,11 +21,7 @@
     },
     {
       "label": "LinkedIn",
-      "url": "www.linkedin.com/in/abdrahman-abubakar-81b31a285"
-    },
-    {
-      "label": "X",
-      "url": "https://x.com/your-username"
+      "url": "https://www.linkedin.com/in/abdrahman-abubakar-81b31a285"
     }
   ],
   "expertise": [

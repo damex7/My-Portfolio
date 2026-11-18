@@ -3,7 +3,8 @@ import Container from "./Container.jsx";
 
 export default function Footer() {
   return (
-    <footer className="mt-24 bg-ink text-paper">
+    // Inverted in light mode; in dark mode it stays dark with a hairline instead of becoming a bright bar.
+    <footer className="mt-24 bg-ink text-paper dark:border-t dark:border-line dark:bg-paper dark:text-ink">
       <Container className="flex flex-wrap items-center justify-between gap-4 py-8 text-sm">
         <p>
           © {new Date().getFullYear()}, {site.name}
@@ -11,7 +12,7 @@ export default function Footer() {
         <ul className="flex flex-wrap gap-5">
           {site.socials.map((s) => (
             <li key={s.label}>
-              <a href={s.url} target="_blank" rel="noreferrer" className="opacity-80 hover:opacity-100">
+              <a href={s.url} target="_blank" rel="noreferrer" className="link-u opacity-80 transition-opacity hover:opacity-100">
                 {s.label}
               </a>
             </li>

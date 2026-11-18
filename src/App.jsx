@@ -1,18 +1,20 @@
 import { useEffect } from "react";
 import { site } from "./lib/content.js";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation, useParams } from "react-router-dom";
 import Header from "./components/Header.jsx";
 import Footer from "./components/Footer.jsx";
+import BackToTop from "./components/BackToTop.jsx";
 import Home from "./pages/Home.jsx";
 import About from "./pages/About.jsx";
-import Works from "./pages/Works.jsx";
+import Work from "./pages/Work.jsx";
 import ProjectPage from "./pages/ProjectPage.jsx";
 import NotFound from "./pages/NotFound.jsx";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
   useEffect(() => {
-    window.scrollTo(0, 0);
+    // "instant" so the smooth-scroll CSS doesn't animate a jump to the top on every route change.
+    window.scrollTo({ top: 0, behavior: "instant" });
   }, [pathname]);
   useEffect(() => {
     document.title = `${site.name} — ${site.role}`;
@@ -20,7 +22,15 @@ function ScrollToTop() {
   return null;
 }
 
+// Old /works/... links keep working after the rename to /work.
+function LegacyProjectRedirect() {
+  const { slug } = useParams();
+  return <Navigate to={`/work/${slug}`} replace />;
+}
+
 export default function App() {
+  const { pathname } = useLocation();
+
   return (
     <>
       <a
@@ -31,16 +41,21 @@ export default function App() {
       </a>
       <ScrollToTop />
       <Header />
-      <main id="main">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/works" element={<Works />} />
-          <Route path="/works/:slug" element={<ProjectPage />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+      <main id="main" tabIndex={-1} className="outline-none">
+        <div key={pathname} className="page-in">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/work" element={<Work />} />
+            <Route path="/work/:slug" element={<ProjectPage />} />
+            <Route path="/works" element={<Navigate to="/work" replace />} />
+            <Route path="/works/:slug" element={<LegacyProjectRedirect />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </div>
       </main>
       <Footer />
+      <BackToTop />
     </>
   );
 }

@@ -58,8 +58,10 @@ collections:
           - { label: Photo, name: photo, widget: image, required: false }
           - { label: Email, name: email, widget: string }
           - { label: Phone, name: phone, widget: string, required: false }
+          - { label: WhatsApp number, name: whatsapp, widget: string, required: false, hint: "With country code, e.g. +234 903 538 4134. Leave empty to hide the WhatsApp button." }
           - { label: Location, name: location, widget: string, required: false }
           - { label: Open to work, name: available, widget: boolean }
+          - { label: Availability, name: availability, widget: text, required: false, hint: "Shown under the headline on the home page" }
           - { label: CV link, name: cvUrl, widget: string, required: false }
           - { label: Challenge start date, name: challengeStart, widget: datetime, date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
           - { label: About, name: about, widget: markdown }

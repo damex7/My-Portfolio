@@ -1,12 +1,23 @@
 // Shows the uploaded cover image, or a generated placeholder until you add one.
-export default function Cover({ project, className = "" }) {
+// `interactive` (used on cards) lets placeholder covers invert on hover. Images keep their own colours.
+export default function Cover({ project, className = "", interactive = false }) {
   if (project.cover) {
-    return <img src={project.cover} alt="" loading="lazy" className={`h-full w-full object-cover ${className}`} />;
+    return (
+      <img
+        src={project.cover}
+        alt=""
+        loading="lazy"
+        className={`h-full w-full object-cover transition-transform duration-500 ${className}`}
+      />
+    );
   }
   const planned = project.status === "planned";
+  const look = planned
+    ? `bg-line/60 text-muted ${interactive ? "group-hover:bg-ink group-hover:text-paper" : ""}`
+    : "bg-ink text-paper";
   return (
     <div
-      className={`flex h-full w-full items-end justify-between p-5 ${planned ? "bg-line/60 text-muted" : "bg-ink text-paper"} ${className}`}
+      className={`flex h-full w-full items-end justify-between p-5 transition-[background-color,color,transform] duration-500 ${look} ${className}`}
       aria-hidden="true"
     >
       <span className="font-display text-7xl font-extrabold leading-none">

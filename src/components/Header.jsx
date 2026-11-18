@@ -1,24 +1,43 @@
-import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { site } from "../lib/content.js";
 import Container from "./Container.jsx";
+import ThemeToggle from "./ThemeToggle.jsx";
 
 const links = [
   { to: "/", label: "Home", end: true },
   { to: "/about", label: "About" },
-  { to: "/works", label: "My works" },
+  { to: "/work", label: "My work" },
 ];
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const menuButton = useRef(null);
+  const { pathname } = useLocation();
+
+  // Close the mobile menu on navigation.
+  useEffect(() => setOpen(false), [pathname]);
+
+  // Escape closes the menu and returns focus to its button.
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+        menuButton.current?.focus();
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [open]);
 
   const navClass = ({ isActive }) =>
-    `text-sm font-bold uppercase tracking-wide transition-colors ${isActive ? "text-ink" : "text-muted hover:text-ink"}`;
+    `link-u text-sm font-bold uppercase tracking-wide transition-colors ${isActive ? "active text-ink" : "text-muted hover:text-ink"}`;
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-paper/90 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-line bg-paper/85 backdrop-blur-md transition-colors duration-300">
       <Container className="flex h-16 items-center justify-between gap-4">
-        <Link to="/" className="font-display text-lg font-extrabold tracking-tight" onClick={() => setOpen(false)}>
+        <Link to="/" className="font-display text-lg font-extrabold tracking-tight">
           {site.name}
         </Link>
 
@@ -34,39 +53,55 @@ export default function Header() {
           </ul>
         </nav>
 
-        <div className="flex items-center gap-3">
-          <a
-            href={`mailto:${site.email}`}
-            className="hidden rounded-full bg-ink px-5 py-2 text-sm font-bold text-paper transition-colors hover:bg-cobalt sm:inline-block"
-          >
+        <div className="flex items-center gap-2 sm:gap-3">
+          <a href={`mailto:${site.email}`} className="btn btn-solid hidden px-5 py-2 text-sm sm:inline-flex">
             Let's talk
           </a>
+          <ThemeToggle />
           <button
+            ref={menuButton}
             type="button"
-            className="rounded-md border border-line px-3 py-1.5 text-sm font-bold md:hidden"
+            className="relative grid h-9 w-9 place-items-center rounded-md border border-line transition-colors hover:border-ink md:hidden"
+            aria-label="Menu"
             aria-expanded={open}
             aria-controls="mobile-nav"
             onClick={() => setOpen((o) => !o)}
           >
-            {open ? "Close" : "Menu"}
+            <span
+              aria-hidden="true"
+              className={`absolute h-0.5 w-4 rounded bg-ink transition-transform duration-300 ${open ? "rotate-45" : "-translate-y-[3px]"}`}
+            />
+            <span
+              aria-hidden="true"
+              className={`absolute h-0.5 w-4 rounded bg-ink transition-transform duration-300 ${open ? "-rotate-45" : "translate-y-[3px]"}`}
+            />
           </button>
         </div>
       </Container>
 
-      {open && (
-        <nav id="mobile-nav" aria-label="Mobile" className="border-t border-line md:hidden">
-          <Container className="flex flex-col gap-4 py-5">
+      {/* Always rendered so it can animate open/closed; inert while closed. */}
+      <div
+        id="mobile-nav"
+        inert={!open}
+        className={`grid transition-[grid-template-rows] duration-300 ease-out md:hidden ${open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
+      >
+        <nav aria-label="Mobile" className="overflow-hidden">
+          <Container
+            className={`flex flex-col items-start gap-4 border-t border-line py-5 transition-[opacity,transform] duration-300 ${
+              open ? "translate-y-0 opacity-100" : "-translate-y-2 opacity-0"
+            }`}
+          >
             {links.map((l) => (
-              <NavLink key={l.to} to={l.to} end={l.end} className={navClass} onClick={() => setOpen(false)}>
+              <NavLink key={l.to} to={l.to} end={l.end} className={navClass}>
                 {l.label}
               </NavLink>
             ))}
-            <a href={`mailto:${site.email}`} className="text-sm font-bold uppercase tracking-wide text-cobalt">
+            <a href={`mailto:${site.email}`} className="link-u text-sm font-bold uppercase tracking-wide text-ink">
               Let's talk
             </a>
           </Container>
         </nav>
-      )}
+      </div>
     </header>
   );
 }

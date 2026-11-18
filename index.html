@@ -4,15 +4,30 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Abdrahman Abubakar — Full-stack Developer</title>
-    <meta name="description" content="My portfolio and 30-day challenge: 30 projects in 30 days, from React to full-stack AI apps." />
+    <meta name="description" content="Full-stack developer available for full-time and freelance work, remote worldwide. React, Next.js, Node.js, PostgreSQL and AI-powered apps." />
 
     <!-- Link preview for LinkedIn, WhatsApp, X and others -->
     <meta property="og:title" content="Abdrahman Abubakar — Full-stack Developer" />
-    <meta property="og:description" content="My portfolio and 30-day challenge: 30 projects in 30 days, from React to full-stack AI apps." />
+    <meta property="og:description" content="Full-stack developer available for full-time and freelance work, remote worldwide. React, Next.js, Node.js, PostgreSQL and AI-powered apps." />
     <meta property="og:image" content="https://abrahmanabubakar.vercel.app/og.png" />
     <meta property="og:url" content="https://abrahmanabubakar.vercel.app/" />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
+
+    <meta name="theme-color" content="#ffffff" />
+    <!-- Apply the saved (or system) theme before first paint, so there's no flash. -->
+    <script>
+      (function () {
+        var dark;
+        try {
+          var saved = localStorage.getItem("theme");
+          if (saved) dark = saved === "dark";
+        } catch (e) {}
+        if (dark === undefined) dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        if (dark) document.documentElement.classList.add("dark");
+        document.querySelector('meta[name="theme-color"]').setAttribute("content", dark ? "#0a0a0a" : "#ffffff");
+      })();
+    </script>
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />

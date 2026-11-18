@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
 import { challengeProjects, phases } from "../lib/content.js";
 
+// Diagonal stripes mark "building" days without needing a colour.
+const stripes = "bg-[repeating-linear-gradient(135deg,var(--color-line)_0_4px,transparent_4px_8px)]";
+
 const cellStyles = {
-  shipped: "bg-ink text-paper border-ink",
-  building: "bg-cobalt text-paper border-cobalt",
-  planned: "bg-transparent text-muted border-line hover:border-muted",
+  shipped: "bg-ink text-paper border-ink hover:bg-paper hover:text-ink",
+  building: `${stripes} text-ink border-ink hover:bg-ink hover:text-paper`,
+  planned: "bg-transparent text-muted border-dashed border-muted hover:border-solid hover:border-ink hover:text-ink",
 };
 
 export default function ChallengeGrid() {
@@ -18,10 +21,10 @@ export default function ChallengeGrid() {
               .map((p) => (
                 <Link
                   key={p.slug}
-                  to={`/works/${p.slug}`}
+                  to={`/work/${p.slug}`}
                   title={`Day ${p.day}: ${p.title} (${p.status})`}
                   aria-label={`Day ${p.day}, ${p.title}, ${p.status}`}
-                  className={`cell-in grid h-10 w-10 place-items-center rounded-md border-2 font-display text-sm font-semibold transition-colors ${cellStyles[p.status] ?? cellStyles.planned}`}
+                  className={`cell-in grid h-10 w-10 place-items-center rounded-md border-2 font-display text-sm font-semibold transition-colors duration-200 ${cellStyles[p.status] ?? cellStyles.planned}`}
                   style={{ animationDelay: `${p.day * 25}ms` }}
                 >
                   {p.day}
@@ -31,9 +34,9 @@ export default function ChallengeGrid() {
         ))}
       </ol>
       <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted">
-        <li className="flex items-center gap-2"><span className="h-3 w-3 rounded-sm bg-ink" aria-hidden="true" /> Shipped</li>
-        <li className="flex items-center gap-2"><span className="h-3 w-3 rounded-sm bg-cobalt" aria-hidden="true" /> Building</li>
-        <li className="flex items-center gap-2"><span className="h-3 w-3 rounded-sm border-2 border-line" aria-hidden="true" /> Planned</li>
+        <li className="flex items-center gap-2"><span className="h-3 w-3 rounded-sm border-2 border-ink bg-ink" aria-hidden="true" /> Shipped</li>
+        <li className="flex items-center gap-2"><span className={`h-3 w-3 rounded-sm border-2 border-ink ${stripes}`} aria-hidden="true" /> Building</li>
+        <li className="flex items-center gap-2"><span className="h-3 w-3 rounded-sm border-2 border-dashed border-muted" aria-hidden="true" /> Planned</li>
       </ul>
     </div>
   );

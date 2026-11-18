@@ -1,55 +1,151 @@
 @import "tailwindcss";
 
+/* Dark mode is driven by a .dark class on <html> (set before paint in index.html). */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
-  --color-paper: #f2f4f1;
-  --color-ink: #17233a;
-  --color-muted: #5e6a7a;
-  --color-line: #d3d9d4;
-  --color-cobalt: #2b44d6;
-  --color-marigold: #f0b429;
+  /* Black & white. paper = background, ink = foreground. */
+  --color-paper: #ffffff;
+  --color-ink: #0a0a0a;
+  --color-muted: #595959;
+  --color-line: #e5e5e5;
 
   --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
   --font-body: "Atkinson Hyperlegible", ui-sans-serif, system-ui, sans-serif;
 }
 
+/* Swapping the tokens flips the whole site; inverted blocks (bg-ink text-paper) stay inverted. */
+.dark {
+  --color-paper: #0a0a0a;
+  --color-ink: #f5f5f5;
+  --color-muted: #a3a3a3;
+  --color-line: #262626;
+  color-scheme: dark;
+}
+
 @layer base {
   html {
+    color-scheme: light;
     scroll-behavior: smooth;
   }
   body {
     @apply bg-paper text-ink font-body antialiased;
+    transition: background-color 300ms ease, color 300ms ease;
+  }
+  /* Tailwind v4 no longer gives buttons a pointer cursor by default. */
+  button:not(:disabled),
+  [role="button"]:not(:disabled),
+  label:has(input[type="checkbox"]) {
+    cursor: pointer;
   }
   ::selection {
-    @apply bg-marigold text-ink;
+    background: var(--color-ink);
+    color: var(--color-paper);
   }
+  /* Ink outline + paper halo: visible on normal and inverted backgrounds alike. */
   :focus-visible {
-    outline: 3px solid var(--color-cobalt);
-    outline-offset: 3px;
+    outline: 2px solid var(--color-ink);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 2px var(--color-paper);
     border-radius: 2px;
   }
 }
 
-/* The one orchestrated moment: challenge cells settle in on page load. */
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-ink px-6 py-3 font-bold transition-[background-color,color,transform] duration-200 active:scale-[0.97];
+  }
+  .btn-solid {
+    @apply bg-ink text-paper hover:bg-transparent hover:text-ink;
+  }
+  .btn-ghost {
+    @apply bg-transparent text-ink hover:bg-ink hover:text-paper;
+  }
+
+  /* Underline that draws in from the left. Wrap text in an inline element for multi-line titles. */
+  .link-u {
+    background: linear-gradient(currentColor, currentColor) left bottom / 0% 2px no-repeat;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    padding-bottom: 2px;
+    transition: background-size 300ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .link-u:hover,
+  .link-u.active,
+  .group:is(:hover, :focus-within) .link-u {
+    background-size: 100% 2px;
+  }
+}
+
+/* ---------- Motion ---------- */
+
+/* Challenge cells settle in on page load. */
 @keyframes cell-in {
-  from {
-    opacity: 0;
-    transform: scale(0.6);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+  from { opacity: 0; transform: scale(0.6); }
+  to { opacity: 1; transform: scale(1); }
 }
 .cell-in {
   animation: cell-in 380ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+/* Each route fades up when it mounts. */
+@keyframes page-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+.page-in {
+  animation: page-in 450ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+/* Hero headline words rise in one after another. */
+@keyframes word-in {
+  from { opacity: 0; transform: translateY(0.4em); }
+  to { opacity: 1; transform: none; }
+}
+/* Pair with `inline-block` on inline elements so the transform applies. */
+.word-in {
+  animation: word-in 600ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+/* Scroll reveal (see components/Reveal.jsx). */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  /* Colour properties are listed too so hover colour fades on revealed elements still work. */
+  transition:
+    opacity 650ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 650ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    background-color 300ms ease,
+    color 300ms ease,
+    border-color 300ms ease;
+  transition-delay: var(--delay, 0ms), var(--delay, 0ms), 0ms, 0ms, 0ms;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Theme switch cross-fade (View Transitions API, where supported). */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 350ms;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-  .cell-in {
-    animation: none;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
   }
 }
 
@@ -59,8 +155,10 @@
 .prose-cms h3 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 600; margin-top: 2rem; }
 .prose-cms ul { list-style: disc; padding-left: 1.25rem; }
 .prose-cms ol { list-style: decimal; padding-left: 1.25rem; }
-.prose-cms a { color: var(--color-cobalt); text-decoration: underline; text-underline-offset: 4px; }
+.prose-cms a { color: var(--color-ink); font-weight: 700; text-decoration: underline; text-underline-offset: 4px; }
+.prose-cms a:hover { text-decoration-thickness: 2px; }
 .prose-cms code { background: var(--color-line); padding: 0.1rem 0.35rem; border-radius: 4px; font-size: 0.9em; }
 .prose-cms pre { background: var(--color-ink); color: var(--color-paper); padding: 1rem; border-radius: 8px; overflow-x: auto; }
+.dark .prose-cms pre { background: #171717; color: var(--color-ink); border: 1px solid var(--color-line); }
 .prose-cms pre code { background: none; padding: 0; }
 .prose-cms img { border-radius: 8px; max-width: 100%; }
