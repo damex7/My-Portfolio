@@ -1,6 +1,6 @@
 {
-  "name": "Abdrahman Abubakar",
-  "wordmark": "Abdrahman Abubakar",
+  "name": "Abubakar Abdrahman Oshodi",
+  "wordmark": "Abubakar Abdrahman Oshodi",
   "role": "Full-stack developer",
   "headline": "I build fast, reliable web applications, from the interface to the database.",
   "intro": "Frontend & full-stack developer working with React, Next.js, TypeScript, Node.js and PostgreSQL. I recently completed a 30-day challenge, shipping one project every day.",
@@ -9,7 +9,7 @@
   "email": "abdrahmanabubakar7000@gmail.com",
   "phone": "+234 903 538 4134",
   "whatsapp": "+234 903 538 4134",
-  "location": "Nigeria",
+  "location": "Abuja, Nigeria",
   "available": true,
   "cvUrl": "",
   "challengeStart": "2026-09-28",
@@ -35,14 +35,35 @@
       }
     ],
     "flow": [
-      { "label": "Question", "note": "In English or Pidgin" },
-      { "label": "AI assistant", "note": "Picks from read-only tools" },
-      { "label": "Service layer", "note": "Workspace taken from the session" },
-      { "label": "PostgreSQL", "note": "Composite keys, integer kobo" },
-      { "label": "Checked answer", "note": "Every figure verified" }
+      {
+        "label": "Question",
+        "note": "In English or Pidgin"
+      },
+      {
+        "label": "AI assistant",
+        "note": "Picks from read-only tools"
+      },
+      {
+        "label": "Service layer",
+        "note": "Workspace taken from the session"
+      },
+      {
+        "label": "PostgreSQL",
+        "note": "Composite keys, integer kobo"
+      },
+      {
+        "label": "Checked answer",
+        "note": "Every figure verified"
+      }
     ]
   },
   "experience": [
+    {
+      "role": "Freelance full-stack developer",
+      "org": "Self-employed · Remote",
+      "period": "",
+      "description": "Building a mobile-first staff portal for a salon on Wix + Velo, where staff sign in to complete daily and weekly checklists, with a manager dashboard for completion tracking and history."
+    },
     {
       "role": "Full-stack developer",
       "org": "30-Day Development Challenge (independent)",
@@ -52,11 +73,48 @@
     {
       "role": "Web developer, client projects",
       "org": "Antico West · Megaliy International School · FSNLI",
-      "period": "",
+      "period": "2026",
       "description": "Built websites and pages for a business, a school and a non-profit with HTML, CSS, JavaScript, PHP and MySQL, including work alongside another full-stack developer."
+    },
+    {
+      "role": "IT support specialist (intern) & software developer",
+      "org": "Federal Capital Development Authority (FCDA) · Abuja",
+      "period": "Apr 2026 – Present",
+      "description": "Building E-Registry, a records and file-tracking system in PHP and MySQL with staff logins, file movement history and mail records, secured with prepared statements, CSRF tokens, password hashing and server-side role checks. Also provide day-to-day technical support across departments and lead support team activities."
+    },
+    {
+      "role": "IT support specialist / frontend developer",
+      "org": "Nigerian Security Printing and Minting (NSPM) · Abuja",
+      "period": "May 2025 – Apr 2026",
+      "description": "Designed and built a web application for the Engineering department to capture and track daily activities, replacing manual record-keeping with a searchable digital log. Gathered requirements from engineers and leadership, and led the support team across hardware, software, network and Microsoft 365 issues."
+    },
+    {
+      "role": "Software developer intern (web & machine learning)",
+      "org": "National Centre for Artificial Intelligence and Robotics (NCAIR) · Abuja",
+      "period": "Aug – Oct 2023",
+      "description": "Trained in web development, UI/UX, Python and machine learning. Built a house price prediction model and led the team presentation of the results."
+    },
+    {
+      "role": "Software developer intern (frontend)",
+      "org": "Ondo State Information Technology Agency · Akure",
+      "period": "Aug – Oct 2022",
+      "description": "Built website pages with HTML, CSS and JavaScript, applying UI/UX design principles."
     }
   ],
-  "education": [],
+  "education": [
+    {
+      "role": "B.Sc. Computer Science, Second Class Upper (2:1)",
+      "org": "Joseph Ayo Babalola University",
+      "period": "2020 – 2024",
+      "description": ""
+    },
+    {
+      "role": "Certifications",
+      "org": "Udemy",
+      "period": "",
+      "description": "Full Stack Web Development (CSS, JavaScript & PHP Mastery). UI/UX App Design with Figma."
+    }
+  ],
   "socials": [
     {
       "label": "GitHub",
@@ -102,7 +160,8 @@
         "Prisma / Drizzle",
         "REST APIs",
         "PHP",
-        "MySql"
+        "MySql",
+        "Python"
       ]
     },
     {
@@ -111,7 +170,8 @@
         "Git",
         "Vite",
         "Vercel",
-        "AI APIs"
+        "AI APIs",
+        "Figma"
       ]
     }
   ],
