@@ -7,7 +7,7 @@
   "summary": "An AI-powered business management platform for small Nigerian businesses. Customers, stock, invoices, payments and expenses, all kept correct to the kobo, plus an assistant that answers questions about your own books and never changes anything without your approval.",
   "cover": "/uploads/ledgerline.jpg",
   "tech": [
-    "Next.js 16 (App Router), , , , , , ,",
+    "Next.js 16 (App Router)",
     "Resend",
     "Google Gemini (@google/genai)",
     "Zod",

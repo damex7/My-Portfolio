@@ -4,6 +4,7 @@
   "category": "Other",
   "status": "shipped",
   "featured": true,
+  "client": "FSNLI (non-profit)",
   "summary": "A one-page website for a Nigerian food-security non-profit, presenting its mission, the causes of food insecurity, its crop-disease research and its work with women and youth.",
   "cover": "/uploads/fsnli img.jpg",
   "tech": [

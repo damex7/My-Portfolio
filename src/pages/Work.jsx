@@ -9,9 +9,11 @@ export default function Work() {
   const [showPlanned, setShowPlanned] = useState(false);
 
   const plannedCount = projects.filter((p) => p.status === "planned").length;
-  const visible = projects.filter(
-    (p) => (category === "All" || p.category === category) && (showPlanned || p.status !== "planned")
-  );
+  const CLIENT = "Client work";
+  const hasClients = projects.some((p) => p.client);
+  const matches = (p) =>
+    category === "All" || (category === CLIENT ? Boolean(p.client) : p.category === category);
+  const visible = projects.filter((p) => matches(p) && (showPlanned || p.status !== "planned"));
 
   const chip = (active) =>
     `rounded-full border px-4 py-1.5 text-sm transition-[background-color,color,border-color,transform] duration-200 active:scale-95 ${
@@ -27,7 +29,7 @@ export default function Work() {
 
       <div className="mt-10 flex flex-wrap items-center justify-between gap-4">
         <div role="group" aria-label="Filter by category" className="flex flex-wrap gap-2">
-          {["All", ...categories].map((c) => (
+          {["All", ...(hasClients ? [CLIENT] : []), ...categories].map((c) => (
             <button key={c} type="button" aria-pressed={category === c} onClick={() => setCategory(c)} className={chip(category === c)}>
               {c}
             </button>

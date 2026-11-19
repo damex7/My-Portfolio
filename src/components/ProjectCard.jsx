@@ -11,7 +11,7 @@ export default function ProjectCard({ project, delay = 0 }) {
           <Cover project={project} interactive className="group-hover:scale-[1.03]" />
         </div>
         <div className="mt-4 flex items-center gap-3 text-sm text-muted">
-          <span>{project.category}</span>
+          <span>{project.client ? `For ${project.client}` : project.category}</span>
           <StatusTag status={project.status} />
         </div>
         <h3 className="mt-1 font-display text-2xl font-semibold tracking-tight">

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { challengeShipped, projects, shippedCount, site } from "../lib/content.js";
+import { challengeShipped, clientProjects, projects, shippedCount, site } from "../lib/content.js";
+import CaseStudy from "../components/CaseStudy.jsx";
 import ChallengeGrid from "../components/ChallengeGrid.jsx";
 import Container from "../components/Container.jsx";
 import ContactCTA from "../components/ContactCTA.jsx";
@@ -56,8 +57,10 @@ function CountUp({ value }) {
 
 export default function Home() {
   const techCount = new Set(site.stack.flatMap((g) => g.items)).size;
-  const featured = projects.filter((p) => p.featured).slice(0, 4);
-  const selected = featured.length ? featured : projects.filter((p) => p.status === "shipped").slice(-4);
+  // Client work and the case study have their own sections, so leave them out of "Selected work".
+  const ownWork = projects.filter((p) => !p.client && p.slug !== site.caseStudy?.project);
+  const featured = ownWork.filter((p) => p.featured).slice(0, 4);
+  const selected = featured.length ? featured : ownWork.filter((p) => p.status === "shipped").slice(-4);
 
   const challengeDone = challengeShipped >= 30;
   const stats = [
@@ -156,6 +159,8 @@ export default function Home() {
         </dl>
       </Container>
 
+      <CaseStudy />
+
       {/* Expertise */}
       <section aria-labelledby="expertise-title" className="mt-28">
         <Container>
@@ -178,6 +183,29 @@ export default function Home() {
           </ol>
         </Container>
       </section>
+
+      {/* Client work */}
+      {clientProjects.length > 0 && (
+        <section aria-labelledby="client-title" className="mt-28">
+          <Container>
+            <Reveal className="flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <SectionTitle id="client-title" bold="Client" rest="work" />
+                <p className="mt-3 max-w-2xl text-muted">Websites built for real organisations: a business, a school and a non-profit.</p>
+              </div>
+              <Link to="/work" className="group inline-flex items-center gap-1.5 font-bold">
+                <span className="link-u">All work</span>
+                <span aria-hidden="true" className="transition-transform duration-200 group-hover:translate-x-1">→</span>
+              </Link>
+            </Reveal>
+            <div className="mt-10 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+              {clientProjects.map((p, i) => (
+                <ProjectCard key={p.slug} project={p} delay={(i % 3) * 120} />
+              ))}
+            </div>
+          </Container>
+        </section>
+      )}
 
       {/* Selected work */}
       <section aria-labelledby="selected-title" className="mt-28">

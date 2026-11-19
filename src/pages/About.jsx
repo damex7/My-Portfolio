@@ -4,6 +4,7 @@ import Container from "../components/Container.jsx";
 import ContactCTA from "../components/ContactCTA.jsx";
 import Reveal from "../components/Reveal.jsx";
 import SectionTitle from "../components/SectionTitle.jsx";
+import Timeline from "../components/Timeline.jsx";
 
 export default function About() {
   return (
@@ -33,6 +34,9 @@ export default function About() {
           </Reveal>
         </div>
       </Container>
+
+      <Timeline id="experience-title" bold="My" rest="experience" items={site.experience} />
+      <Timeline id="education-title" bold="My" rest="education" items={site.education} />
 
       <section aria-labelledby="stack-title" className="mt-24">
         <Container>

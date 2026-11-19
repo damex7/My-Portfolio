@@ -16,6 +16,7 @@ export { site };
 
 export const challengeProjects = projects.filter((p) => p.day);
 export const shippedCount = projects.filter((p) => p.status === "shipped").length;
+export const clientProjects = projects.filter((p) => p.client);
 export const challengeShipped = challengeProjects.filter((p) => p.status === "shipped").length;
 
 export const categories = [...new Set(projects.map((p) => p.category).filter(Boolean))];

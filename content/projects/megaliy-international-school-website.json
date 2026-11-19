@@ -4,6 +4,7 @@
   "category": "Other",
   "status": "shipped",
   "featured": true,
+  "client": "Megaliy International School",
   "summary": "This website is for a school and I had the privilege of working on some pages alongside a fellow full-stack developer.",
   "cover": "/uploads/megaliy img.jpg",
   "tech": [

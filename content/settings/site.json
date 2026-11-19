@@ -4,7 +4,7 @@
   "role": "Full-stack developer",
   "headline": "I build fast, reliable web applications, from the interface to the database.",
   "intro": "Frontend & full-stack developer working with React, Next.js, TypeScript, Node.js and PostgreSQL. I recently completed a 30-day challenge, shipping one project every day.",
-  "availability": "Available now for full-time roles and freelance or contract work, remote and worldwide.",
+  "availability": "Available now for full-time roles and freelance or contract work. Open to remote work worldwide and to relocating.",
   "photo": "/uploads/WhatsApp Image 2026-09-28 at 2.23.31 PM.jpeg",
   "email": "abdrahmanabubakar7000@gmail.com",
   "phone": "+234 903 538 4134",
@@ -13,7 +13,50 @@
   "available": true,
   "cvUrl": "",
   "challengeStart": "2026-09-28",
-  "about": "I'm a full-stack developer and engineer who builds web applications end to end. On the frontend, I work with HTML5, CSS, Javascript, React, Next.js, TypeScript and Tailwind CSS to create interfaces that are fast, accessible and easy to use. On the backend, I build APIs, design PostgreSQL and MySQL databases, write PHP back ends and set up authentication, so the whole product holds together.\n\nI learn by shipping. I recently completed a 30-day challenge, building and shipping one project a day, from React fundamentals to full-stack apps with AI features.\n\nI'm available now for full-time roles and freelance or contract work. I work remotely with teams worldwide and can start immediately, ready to contribute from day one, take on unfamiliar problems and keep growing as an engineer.",
+  "about": "I'm a full-stack developer and engineer who builds web applications end to end. On the frontend, I work with HTML5, CSS, Javascript, React, Next.js, TypeScript and Tailwind CSS to create interfaces that are fast, accessible and easy to use. On the backend, I build APIs, design PostgreSQL and MySQL databases, write PHP back ends and set up authentication, so the whole product holds together.\n\nI learn by shipping. I recently completed a 30-day challenge, building and shipping one project a day, from React fundamentals to full-stack apps with AI features.\n\nI'm available now for full-time roles and freelance or contract work. I work remotely with teams worldwide, I'm open to relocating, and I can start immediately, ready to contribute from day one, take on unfamiliar problems and keep growing as an engineer.",
+  "caseStudy": {
+    "project": "day-30-ai-powered-business-management-platform",
+    "highlights": [
+      {
+        "title": "Tenant isolation, enforced twice",
+        "text": "Every query is scoped to the signed-in workspace in the service layer, and composite foreign keys in PostgreSQL stop data crossing between businesses even if the code has a bug."
+      },
+      {
+        "title": "Money correct to the kobo",
+        "text": "Amounts are stored as integer kobo, invoices get gapless numbers, and stock can't go below zero even when two people sell the last item at the same moment."
+      },
+      {
+        "title": "An AI assistant you can trust",
+        "text": "It answers in English or Pidgin using a fixed set of read-only tools, never writes SQL, and every figure is checked against the tool results. Anything it drafts needs a person's approval."
+      },
+      {
+        "title": "Built from first principles",
+        "text": "Auth, sessions, rate limiting, migrations and accessible SVG charts with no ORM or UI library, plus a script that checks the ledger's rules against a real database."
+      }
+    ],
+    "flow": [
+      { "label": "Question", "note": "In English or Pidgin" },
+      { "label": "AI assistant", "note": "Picks from read-only tools" },
+      { "label": "Service layer", "note": "Workspace taken from the session" },
+      { "label": "PostgreSQL", "note": "Composite keys, integer kobo" },
+      { "label": "Checked answer", "note": "Every figure verified" }
+    ]
+  },
+  "experience": [
+    {
+      "role": "Full-stack developer",
+      "org": "30-Day Development Challenge (independent)",
+      "period": "Sep – Oct 2026",
+      "description": "Designed, built and shipped 30 web applications in 30 days, from React fundamentals to Ledgerline, a multi-tenant AI business platform. Each one is live, with public code and a write-up."
+    },
+    {
+      "role": "Web developer, client projects",
+      "org": "Antico West · Megaliy International School · FSNLI",
+      "period": "",
+      "description": "Built websites and pages for a business, a school and a non-profit with HTML, CSS, JavaScript, PHP and MySQL, including work alongside another full-stack developer."
+    }
+  ],
+  "education": [],
   "socials": [
     {
       "label": "GitHub",

@@ -4,6 +4,7 @@
   "category": "Other",
   "status": "shipped",
   "featured": true,
+  "client": "Antico West",
   "summary": "An E-commerce website for a business that sells engineering tools, welding machines, lubricants, safety equipment etc.",
   "cover": "/uploads/antico img.jpg",
   "tech": [
